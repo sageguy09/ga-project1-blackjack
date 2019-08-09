@@ -1,3 +1,9 @@
+h1 {
+    color: black;
+    text-align: center;
+}
+
+
 
 .gameBoard {
     background-color: green;
@@ -21,6 +27,7 @@ h5 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 
 }
 
@@ -29,9 +36,12 @@ h5 {
     /*padding: 20px;
     margin: 5px;
     */
+    
+    height: 80%;
     margin: 20px;
-    flex: 1  100%;
-   width: auto;
+    flex: 1 1 100%;
+    
+   /*width: auto;*/
     
     
     border: solid black 2px;
