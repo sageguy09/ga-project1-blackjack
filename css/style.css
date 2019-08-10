@@ -1,10 +1,9 @@
+
+
 h1 {
     color: black;
     text-align: center;
 }
-
-
-
 .gameBoard {
     background-color: green;
     padding: 5px;
@@ -28,7 +27,7 @@ h5 {
     margin: 10px auto;
     border: solid black 5px;
     display: flex;
-    min-width: 800px; 
+    min-width: px; 
     height: 205px;
     justify-content: space-around;  
 }
@@ -59,23 +58,13 @@ h5 {
 .container {
     display: flex;
     flex-flow: row;
-   
-    
-
 }
-
-
 .statusPrompt {
-
 margin: auto;
 padding: 90px 145px;
 background-color: whitesmoke;
 align-self: center;
-
-
 }
-
-
 .deck {
         height: 205px;
         width: 160px;
@@ -87,11 +76,20 @@ align-self: center;
 
 .btns {
     display: flex;
-    justify-content: center;
-    
+    justify-content: center; 
 }
 
 .btn {
     margin:1px;
     padding: 15px;
+}
+.onStartPrompt {
+    text-align: center;
+    width: 160px;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: lightslategray;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
