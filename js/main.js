@@ -1,5 +1,5 @@
 //global
-
+let playerName = "" 
 /*
 $(".onStartPrompt").submit(function(event){
     playerName = $('.onPlayerName')
@@ -11,8 +11,8 @@ event.preventDefault();
 
 
 $(".onStartPrompt").submit(function(event){
-    let getPlayerName = $('input[name="onPlayerName').val();
-    console.log(getPlayerName);
+    playerName = $('input[name="onPlayerName').val();
+    console.log(playerName);
     event.preventDefault();
 })
 
