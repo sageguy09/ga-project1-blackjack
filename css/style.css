@@ -89,12 +89,15 @@ align-self: center;
 
 
 .deck {
-      
-        
         height: 205px;
         width: 160px;
         margin: auto 40px;
         background-color: lightcyan;
         border: solid black 2px;
         border-radius: 5px;
+}
+
+.btns {
+    display: flex;
+    justify-content: center;
 }
