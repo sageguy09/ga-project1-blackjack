@@ -9,17 +9,6 @@ let deck = [
 
 ]
     
-
-
-
-
-
-
-
-
-
-
-]
 let number = ['2', '3', '4' ,'5', '6', '7', '8', '9', '10']
 let face = ['king', 'queen', 'jack', 'ace']
 let suit = ['diamond', 'heart', 'diamond', 'heart']
@@ -31,7 +20,13 @@ let playerName = ""
 
 //functions
 $(".onStartPrompt").submit(function(event){
-    playerName = $('input[name="onPlayerName').val();
+    enteredName = $('input[name="onPlayerName').val()
+    if (enteredName != "Enter Player Name"){
+    playerName = enteredName
+    }
+    else {
+        playerName = "Player"
+    }
     console.log(playerName);
     event.preventDefault();
 })
