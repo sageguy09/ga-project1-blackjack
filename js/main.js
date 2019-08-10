@@ -41,7 +41,7 @@ let deck = [
     cardSuit: 'diamonds',
     cardVal: 9,
     carImg: cardImgDir+"9_of_diamonds.png"
-    }
+    },
     {cardVar: '10',
     cardSuit: 'diamonds',
     cardVal: 10,
@@ -101,12 +101,12 @@ let deck = [
     {cardVar: '8',
     cardSuit: 'hearts',
     cardVal: 8,
-    carImg: cardImgDir+"2_of_hearts.png"
+    carImg: cardImgDir+"8_of_hearts.png"
     },
-    {cardVar: '2',
+    {cardVar: '9',
     cardSuit: 'hearts',
     cardVal: 9,
-    carImg: cardImgDir+"2_of_hearts.png"
+    carImg: cardImgDir+"9_of_hearts.png"
     },
     {cardVar: '10',
     cardSuit: 'hearts',
@@ -114,7 +114,7 @@ let deck = [
     carImg: cardImgDir+"10_of_hearts.png"
     },
     {cardVar: 'Jack',
-    cardSuit: 'diamonds',
+    cardSuit: 'hearts',
     cardVal: 10,
     carImg: cardImgDir+"jack_of_hearts.png"
     },
@@ -133,72 +133,138 @@ let deck = [
     cardVal: 11,
     carImg: cardImgDir+"ace_of_hearts.png"
     },
-      //suit clubs
-      {cardVar: '2',
-      cardSuit: 'clubs',
-      cardVal: 2,
-      carImg: cardImgDir+"2_of_clubs.png"
-      },
-      {cardVar: '3',
-      cardSuit: 'clubs',
-      cardVal: 3,
-      carImg: cardImgDir+"3_of_clubs.png"
-      },
-      {cardVar: '4',
-      cardSuit: 'clubs',
-      cardVal: 4,
-      carImg: cardImgDir+"4_of_clubs.png"
-      },
-      {cardVar: '5',
-      cardSuit: 'clubs',
-      cardVal: 5,
-      carImg: cardImgDir+"5_of_clubs.png"
-      },
-      {cardVar: '6',
-      cardSuit: 'clubs',
-      cardVal: 6,
-      carImg: cardImgDir+"6_of_clubs.png"
-      },
-      {cardVar: '7',
-      cardSuit: 'clubs',
-      cardVal: 7,
-      carImg: cardImgDir+"7_of_clubs.png"
-      },
-      {cardVar: '8',
-      cardSuit: 'clubs',
-      cardVal: 8,
-      carImg: cardImgDir+"2_of_clubs.png"
-      },
-      {cardVar: '2',
-      cardSuit: 'clubs',
-      cardVal: 9,
-      carImg: cardImgDir+"2_of_clubs.png"
-      },
-      {cardVar: '10',
-      cardSuit: 'clubs',
-      cardVal: 10,
-      carImg: cardImgDir+"10_of_clubs.png"
-      },
-      {cardVar: 'Jack',
-      cardSuit: 'diamonds',
-      cardVal: 10,
-      carImg: cardImgDir+"jack_of_clubs.png"
-      },
-      {cardVar: 'Queen',
-      cardSuit: 'clubs',
-      cardVal: 10,
-      carImg: cardImgDir+"queen_of_clubs.png"
-      },
-      {cardVar: 'King',
-      cardSuit: 'clubs',
-      cardVal: 10,
-      carImg: cardImgDir+"king_of_clubs.png"
-      },
-      {cardVar: 'Ace',
-      cardSuit: 'clubs',
-      cardVal: 11,
-      carImg: cardImgDir+"ace_of_clubs.png"
-      },
+    //suit clubs
+    {cardVar: '2',
+    cardSuit: 'clubs',
+    cardVal: 2,
+    carImg: cardImgDir+"2_of_clubs.png"
+    },
+    {cardVar: '3',
+    cardSuit: 'clubs',
+    cardVal: 3,
+    carImg: cardImgDir+"3_of_clubs.png"
+    },
+    {cardVar: '4',
+    cardSuit: 'clubs',
+    cardVal: 4,
+    carImg: cardImgDir+"4_of_clubs.png"
+    },
+    {cardVar: '5',
+    cardSuit: 'clubs',
+    cardVal: 5,
+    carImg: cardImgDir+"5_of_clubs.png"
+    },
+    {cardVar: '6',
+    cardSuit: 'clubs',
+    cardVal: 6,
+    carImg: cardImgDir+"6_of_clubs.png"
+    },
+    {cardVar: '7',
+    cardSuit: 'clubs',
+    cardVal: 7,
+    carImg: cardImgDir+"7_of_clubs.png"
+    },
+    {cardVar: '8',
+    cardSuit: 'clubs',
+    cardVal: 8,
+    carImg: cardImgDir+"8_of_clubs.png"
+    },
+    {cardVar: '9',
+    cardSuit: 'clubs',
+    cardVal: 9,
+    carImg: cardImgDir+"9_of_clubs.png"
+    },
+    {cardVar: '10',
+    cardSuit: 'clubs',
+    cardVal: 10,
+    carImg: cardImgDir+"10_of_clubs.png"
+    },
+    {cardVar: 'Jack',
+    cardSuit: 'clubs',
+    cardVal: 10,
+    carImg: cardImgDir+"jack_of_clubs.png"
+    },
+    {cardVar: 'Queen',
+    cardSuit: 'clubs',
+    cardVal: 10,
+    carImg: cardImgDir+"queen_of_clubs.png"
+    },
+    {cardVar: 'King',
+    cardSuit: 'clubs',
+    cardVal: 10,
+    carImg: cardImgDir+"king_of_clubs.png"
+    },
+    {cardVar: 'Ace',
+    cardSuit: 'clubs',
+    cardVal: 11,
+    carImg: cardImgDir+"ace_of_clubs.png"
+    },
+    //suit spades
+    {cardVar: '2',
+    cardSuit: 'spades',
+    cardVal: 2,
+    carImg: cardImgDir+"2_of_spades.png"
+    },
+    {cardVar: '3',
+    cardSuit: 'spades',
+    cardVal: 3,
+    carImg: cardImgDir+"3_of_spades.png"
+    },
+    {cardVar: '4',
+    cardSuit: 'spades',
+    cardVal: 4,
+    carImg: cardImgDir+"4_of_spades.png"
+    },
+    {cardVar: '5',
+    cardSuit: 'spades',
+    cardVal: 5,
+    carImg: cardImgDir+"5_of_spades.png"
+    },
+    {cardVar: '6',
+    cardSuit: 'spades',
+    cardVal: 6,
+    carImg: cardImgDir+"6_of_spades.png"
+    },
+    {cardVar: '7',
+    cardSuit: 'spades',
+    cardVal: 7,
+    carImg: cardImgDir+"7_of_spades.png"
+    },
+    {cardVar: '8',
+    cardSuit: 'spades',
+    cardVal: 8,
+    carImg: cardImgDir+"8_of_spades.png"
+    },
+    {cardVar: '9',
+    cardSuit: 'spades',
+    cardVal: 9,
+    carImg: cardImgDir+"9_of_spades.png"
+    },
+    {cardVar: '10',
+    cardSuit: 'spades',
+    cardVal: 10,
+    carImg: cardImgDir+"10_of_spades.png"
+    },
+    {cardVar: 'Jack',
+    cardSuit: 'spades',
+    cardVal: 10,
+    carImg: cardImgDir+"jack_of_spades.png"
+    },
+    {cardVar: 'Queen',
+    cardSuit: 'spades',
+    cardVal: 10,
+    carImg: cardImgDir+"queen_of_spades.png"
+    },
+    {cardVar: 'King',
+    cardSuit: 'spades',
+    cardVal: 10,
+    carImg: cardImgDir+"king_of_spades.png"
+    },
+    {cardVar: 'Ace',
+    cardSuit: 'spades',
+    cardVal: 11,
+    carImg: cardImgDir+"ace_of_spades.png"
+    },
 ]
  //deck card variables   
 let number = ['2', '3', '4' ,'5', '6', '7', '8', '9', '10']
