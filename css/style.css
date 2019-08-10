@@ -45,19 +45,7 @@ h5 {
     margin: 5px auto;
 }
 
-/*
-.handCard {
-    background-color: lightcyan;
-    
-    border: solid black 2px;
-    border-radius: 5px;
-    width: 70px;
-    flex: 0 1 70px;
-    padding:40px 20px;
-    margin: auto 15px  ;
-   
-}
-*/
+
 #currentScore {
     display: block;
     margin: 5px auto;
@@ -100,4 +88,10 @@ align-self: center;
 .btns {
     display: flex;
     justify-content: center;
+    
+}
+
+.btn {
+    margin:1px;
+    padding: 15px;
 }
