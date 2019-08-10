@@ -267,13 +267,13 @@ let deck = [
     },
 ]
  //deck card variables   
-let number = ['2', '3', '4' ,'5', '6', '7', '8', '9', '10']
-let face = ['king', 'queen', 'jack', 'ace']
-let suit = ['diamond', 'heart', 'diamond', 'heart']
+//let number = ['2', '3', '4' ,'5', '6', '7', '8', '9', '10']
+//let face = ['king', 'queen', 'jack', 'ace']
+//let suit = ['diamond', 'heart', 'diamond', 'heart']
 
 //global vars and arrays
 let playerName = "" 
-let shuffledDeck = []
+let shuffledDeck = ""
 //let cardPlayed = (shuffledDeck[i].cardVar+" of "+shuffledDeck[i].cardSuit) //calls cardPlayed for message prompts
 
 
@@ -292,5 +292,38 @@ $(".onStartPrompt").submit(function(event){
 })
 
 
-//shuffleDeck()
+//shuffleDeck() to call deck and set shuffledDeck to array of random cards
+//call deck
+function shuffleDeck(deck) {
+    let shuffle = [].concat(deck);
+    let currentIndex = deck.length, temporaryValue, randomIndex;
+    while (currentIndex !== 0){
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
 
+        temporaryValue = shuffle[currentIndex];
+        shuffle[currentIndex] = shuffle[randomIndex];
+        shuffle[randomIndex] = temporaryValue;
+    }
+    shuffledDeck = [].concat(shuffle);
+    return shuffledDeck
+
+};
+
+
+/*
+    while(shuffle.length < 52){
+        Card = Math.
+    }
+      //debugger return console.log(shuffle);}
+    let shuffle = [];
+    //variable= #ofObj, 
+   
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex)
+    }
+    
+    
+    */
+
+ 
