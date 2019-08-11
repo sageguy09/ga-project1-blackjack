@@ -293,7 +293,7 @@ $(".onStartPrompt").submit(function(event){
         playerName = "Player"
     };
     shuffledDeck = new shuffleDeck();
-    dealCount = 1;
+    dealCount = 0;
     currentPlayer = 1;
     event.preventDefault();
     return dealCards();
@@ -351,7 +351,7 @@ function createHand(pc){
 
 
 function dealCards(){
-    if (dealCount == 1){
+    if (dealCount == 0){
         //**stretch: update parameter to be playerCount */
         createHand(2);
         for (let i = 0; i < 2; i++){
@@ -361,12 +361,12 @@ function dealCards(){
                 
             }
         }
-    console.log("createHand deal: "+shuffledDeck.length+" pull: "+dealCount)
+    console.log("createHand deal: "+shuffledDeck.length+" cards pulled: "+dealCount)
     }
     else {
         players[currentPlayer].hand.push(shuffledDeck.pop());
         dealCount += 1;
-        console.log("hit btn test: "+shuffledDeck.length+" pull: "+dealCount);
+        console.log("hit btn test: "+shuffledDeck.length+" cards pulled: "+dealCount);
            
     }
     setCurrentScore(currentPlayer);
