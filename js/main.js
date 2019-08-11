@@ -383,14 +383,38 @@ function setCurrentScore(cp){
 }
 
 function  chkCurrentScore(ckScore){
+    //not dealer, under 21
     if (currentPlayer != 0 && ckScore < 21){
+        //**update to send to statusPrompt**
         console.log(players[currentPlayer].name+" current score "+ckScore+". Hit or Stay?")
-        //status promp "Hit or Stay"
+        
     } 
+    //not dealer, over 21. 
     else if (currentPlayer != 0 && ckScore >21){
+        //return set playerCount to dealer
         nxtPlayer = nextPlayer();
+        //**update to send to statusPrompt**
         console.log(players[currentPlayer].name+" BUST! score: "+ckScore+nxtPlayer+" turn to play")
     }
+    /*
+    //dealer (dealer logic?)
+    if (currentPlayer == 0 && ckScore < 17){
+        //message = players.[currenPlayer].name"(dealer)"" = chkCurrentScore
+        //**update to send to statusPrompt**
+        console.log(players[currentPlayer].name+" current score "+ckScore+". Hit or Stay?")
+        //then call hitButton(submit)
+      else if (currentPlayer == 0 && ckScore >21){
+          //*do next* update below to refelect dealer...
+        //return set playerCount to dealer
+        nxtPlayer = nextPlayer();
+        //**update to send to statusPrompt**
+        console.log(players[currentPlayer].name+" BUST! score: "+ckScore+nxtPlayer+" turn to play")
+    }
+*/
+        
+        
+    } 
+
 /*
     else if (currentPlayer == players.length && ckScore >21){
         console.log(players[currentPlayer].name+" BUST! score: "+ckScore+". "+players[0].name+
