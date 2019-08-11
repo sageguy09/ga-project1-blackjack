@@ -275,9 +275,10 @@ let deck = [
 let playerName = "" 
 
 //stretch idead//let cardPlayed = (shuffledDeck[i].cardVar+" of "+shuffledDeck[i].cardSuit) //calls cardPlayed for message prompts
-let shuffledDeck = ""; 
+let shuffledDeck = new Array; 
 let currentDeal = "";
 let players = new Array();
+
     
 
 //functions
@@ -326,21 +327,25 @@ function createHand(pc){
     //adds hand array
     players = new Array();
     for (let i = 0; i < pc; i++){
-        chand = new Array();
+        cHand = new Array();
         let cPlayer = 
             {
-            playername: getName(i),
-            hand: chand,
+            playerName: getName(i),
+            hand: cHand,
             score: 0,
             cardsDealt: 0,
-            pNum: i}
-              // console.log("handpass")
-               players.push(cPlayer);
+            pNum: i
+        }
+        players.push(cPlayer);
     }
 }
+
 function dealCards(){
-    let dealCount = 0;
     createHand(2);
+    for (let i = 0; i < 2; i++){
+        let dCard = shuffledDeck.pop();
+        players[i].hand.push(dCard);
+    }
 };
 
 
