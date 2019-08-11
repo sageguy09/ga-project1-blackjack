@@ -277,7 +277,7 @@ let playerName = ""
 //stretch idead//let cardPlayed = (shuffledDeck[i].cardVar+" of "+shuffledDeck[i].cardSuit) //calls cardPlayed for message prompts
 let shuffledDeck = ""; 
 let currentDeal = "";
-let players = [];
+let players = new Array();
     
 
 //functions
@@ -305,38 +305,50 @@ function shuffleDeck() {
     while (currentIndex !== 0){
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
-
         temporaryValue = shuffle[currentIndex];
         shuffle[currentIndex] = shuffle[randomIndex];
         shuffle[randomIndex] = temporaryValue;
     }
     return [].concat(shuffle);
 };
+//lookup and assign player name(s)
+function getName(i){
+    //let gname; 
+    if (i == 0){
+        return "dealer";
+    }
+    else {
+        return playerName;
+    }
+};
 
+function createHand(pc){
+    //adds hand array
+    players = new Array();
+    for (let i = 0; i < pc; i++){
+        chand = new Array();
+        let cPlayer = 
+            {
+            playername: getName(i),
+            hand: chand,
+            score: 0,
+            cardsDealt: 0,
+            pNum: i}
+              // console.log("handpass")
+               players.push(cPlayer);
+    }
+}
 function dealCards(){
     let dealCount = 0;
-    let currentPlayer = 0;
-    let cPlayerScore = 0;
-    let cDealerScore = 0;
-    players[0] = new createHand;
-    players[1] = new createHand;
-    /*
-    players[0] = new cHand();
-    players[1] = new cHand();
-    */
-
-}
+    createHand(2);
+};
 
 
-function createHand(){
-    //adds hand array
-    let hand= {hand:[],
-               score: 0,
-               cardsDealt: 0};
+
+
     
     
-    return [].concat(hand);
-}
+
 /*
     while(shuffle.length < 52){
         Card = Math.
