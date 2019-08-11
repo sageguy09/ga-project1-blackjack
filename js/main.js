@@ -351,13 +351,6 @@ function createHand(pc){
 
 
 function dealCards(){
-    //let dCard = shuffledDeck.pop();
-    /*function incDCount(){
-        (dealCount += 1);
-        }
-        function dCard(){
-            shuffledDeck.pop();
-        }*/
     if (dealCount == 1){
         createHand(2);
         for (let i = 0; i < 2; i++){
@@ -390,16 +383,38 @@ function setCurrentScore(cp){
 }
 
 function  chkCurrentScore(ckScore){
-    if (ckScore < 21){
-        console.log("chkCurrentScore test :"+ckScore)
+    if (currentPlayer != 0 && ckScore < 21){
+        console.log(players[currentPlayer].name+" current score "+ckScore+". Hit or Stay?")
+        //status promp "Hit or Stay"
     } 
+    else if (currentPlayer != 0 && ckScore >21){
+        nxtPlayer = nextPlayer();
+        console.log(players[currentPlayer].name+" BUST! score: "+ckScore+nxtPlayer+" turn to play")
+    }
+/*
+    else if (currentPlayer == players.length && ckScore >21){
+        console.log(players[currentPlayer].name+" BUST! score: "+ckScore+". "+players[0].name+
+    }
+  */
     else {
+        nextPlayer();
         console.log("bust text:"+ckScore)
     }
 }
 
 
     
+function nextPlayer(){
+     
+    if (players.length == currentPlayer){
+        currentPlayer += 1;
+        console.log(players[currentPlayer].name);
+    }
+    else {
+        currentPlayer = 0;
+        return players[0].name;
+    }
+}
     
 
 /*
