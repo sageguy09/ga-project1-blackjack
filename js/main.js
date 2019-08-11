@@ -296,7 +296,7 @@ $(".onStartPrompt").submit(function(event){
     dealCount = 1;
     currentPlayer = 1;
     event.preventDefault();
-    return new dealCards();
+    return dealCards();
 })
 
 $("#hitBtn").click(function(event){
@@ -349,21 +349,28 @@ function createHand(pc){
     }
 }
 
+
 function dealCards(){
+    //let dCard = shuffledDeck.pop();
+    /*function incDCount(){
+        (dealCount += 1);
+        }
+        function dCard(){
+            shuffledDeck.pop();
+        }*/
     if (dealCount == 1){
         createHand(2);
         for (let i = 0; i < 2; i++){
             for(var j = 0; j < players.length; j++){
-                let dCard = shuffledDeck.pop();
-                players[j].hand.push(dCard);
+                players[j].hand.push(shuffledDeck.pop());
                 dealCount += 1;
-
             }
         }
     console.log("initial deal: "+shuffledDeck.length+" pull: "+dealCount)
     }
     else {
-        
+        players[currentPlayer].hand.push(shuffledDeck.pop());
+        dealCount += 1;
         console.log("hit btn test: "+shuffledDeck.length+" pull: "+dealCount);
     }
 }
