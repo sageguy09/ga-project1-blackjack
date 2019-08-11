@@ -339,7 +339,7 @@ function createHand(pc){
         cHand = new Array();
         let cPlayer = 
             {
-            playerName: getName(i),
+            name: getName(i),
             hand: cHand,
             score: 0,
             cardsDealt: 0,
@@ -364,6 +364,7 @@ function dealCards(){
             for(var j = 0; j < players.length; j++){
                 players[j].hand.push(shuffledDeck.pop());
                 dealCount += 1;
+                //cScore();
             }
         }
     console.log("initial deal: "+shuffledDeck.length+" pull: "+dealCount)
@@ -375,6 +376,14 @@ function dealCards(){
     }
 }
 
+function cScore(currentPlayer){
+    let cScore = 0;
+        for (let i = 0; i < players[currentPlayer].hand.length; i++){
+            cScore += players[currentPlayer].hand[i].cardVal;
+        }
+    players[currentPlayer].score = cScore;
+    console.log(players[currentPlayer].name+" current score = "+ players[currentPlayer].score)
+}
 
 
 
