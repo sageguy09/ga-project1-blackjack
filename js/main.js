@@ -352,6 +352,7 @@ function createHand(pc){
 
 function dealCards(){
     if (dealCount == 1){
+        //**stretch: update parameter to be playerCount */
         createHand(2);
         for (let i = 0; i < 2; i++){
             for(var j = 0; j < players.length; j++){
@@ -360,7 +361,7 @@ function dealCards(){
                 
             }
         }
-    console.log("initial deal: "+shuffledDeck.length+" pull: "+dealCount)
+    console.log("createHand deal: "+shuffledDeck.length+" pull: "+dealCount)
     }
     else {
         players[currentPlayer].hand.push(shuffledDeck.pop());
