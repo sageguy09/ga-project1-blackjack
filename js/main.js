@@ -275,8 +275,10 @@ let deck = [
 let playerName = "" 
 
 //stretch idead//let cardPlayed = (shuffledDeck[i].cardVar+" of "+shuffledDeck[i].cardSuit) //calls cardPlayed for message prompts
-let shuffledDeck = "" 
-let currentDeal = ""
+let shuffledDeck = ""; 
+let currentDeal = "";
+let players = [];
+    
 
 //functions
 //submit onStartPrompt
@@ -316,17 +318,24 @@ function dealCards(){
     let currentPlayer = 0;
     let cPlayerScore = 0;
     let cDealerScore = 0;
-    let cPlayerHand = new cHand();
-    let cDealerHand = new cHand();
-    
+    players[0] = new createHand;
+    players[1] = new createHand;
+    /*
+    players[0] = new cHand();
+    players[1] = new cHand();
+    */
+
 }
 
 
-function cHand(){
+function createHand(){
+    //adds hand array
+    let hand= {hand:[],
+               score: 0,
+               cardsDealt: 0};
     
     
-    
-    console.log('chandTest')
+    return [].concat(hand);
 }
 /*
     while(shuffle.length < 52){
