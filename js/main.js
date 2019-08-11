@@ -343,10 +343,13 @@ function createHand(pc){
 function dealCards(){
     createHand(2);
     for (let i = 0; i < 2; i++){
+            for(var j = 0; j < players.length; j++){
         let dCard = shuffledDeck.pop();
-        players[i].hand.push(dCard);
+        players[j].hand.push(dCard);
     }
-};
+}
+console.log(shuffledDeck.length)
+}
 
 
 
