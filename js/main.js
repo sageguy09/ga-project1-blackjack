@@ -364,7 +364,7 @@ function dealCards(){
             for(var j = 0; j < players.length; j++){
                 players[j].hand.push(shuffledDeck.pop());
                 dealCount += 1;
-                //setCurrentScore();
+                
             }
         }
     console.log("initial deal: "+shuffledDeck.length+" pull: "+dealCount)
@@ -373,19 +373,30 @@ function dealCards(){
         players[currentPlayer].hand.push(shuffledDeck.pop());
         dealCount += 1;
         console.log("hit btn test: "+shuffledDeck.length+" pull: "+dealCount);
+        
     }
+    setCurrentScore();
 }
 //gets current score from currentPlayer
-function setCurrentScore(currentPlayer){
+function setCurrentScore(){
     let cScore = 0;
         for (let i = 0; i < players[currentPlayer].hand.length; i++){
             //insert formula to deterimine if ace exists, set val to 1 if true
             cScore += players[currentPlayer].hand[i].cardVal;
         }
     players[currentPlayer].score = cScore;
-    console.log(players[currentPlayer].name+" current score = "+ players[currentPlayer].score)
+    console.log(players[currentPlayer].name+" current score = "+ players[currentPlayer].score);
+     chkCurrentScore(cScore);
 }
 
+function  chkCurrentScore(ckScore){
+    if (ckScore < 21){
+        console.log("chkCurrentScore test :"+ckScore)
+    } 
+    else {
+        console.log("bust text:"+ckScore)
+    }
+}
 
 
     
