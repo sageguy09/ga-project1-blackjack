@@ -375,17 +375,17 @@ function dealCards(){
         console.log("hit btn test: "+shuffledDeck.length+" pull: "+dealCount);
         
     }
-    setCurrentScore();
+    setCurrentScore(currentPlayer);
 }
 //gets current score from currentPlayer
-function setCurrentScore(){
+function setCurrentScore(cp){
     let cScore = 0;
-        for (let i = 0; i < players[currentPlayer].hand.length; i++){
+        for (let i = 0; i < players[cp].hand.length; i++){
             //insert formula to deterimine if ace exists, set val to 1 if true
-            cScore += players[currentPlayer].hand[i].cardVal;
+            cScore += players[cp].hand[i].cardVal;
         }
-    players[currentPlayer].score = cScore;
-    console.log(players[currentPlayer].name+" current score = "+ players[currentPlayer].score);
+    players[cp].score = cScore;
+    console.log(players[cp].name+" current score = "+ players[cp].score);
      chkCurrentScore(cScore);
 }
 
