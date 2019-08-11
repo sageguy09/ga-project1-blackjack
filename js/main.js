@@ -273,10 +273,10 @@ let deck = [
 
 //global vars and arrays
 let playerName = "" 
-let shuffledDeck = new shuffleDeck()
-//let cardPlayed = (shuffledDeck[i].cardVar+" of "+shuffledDeck[i].cardSuit) //calls cardPlayed for message prompts
 
-
+//stretch idead//let cardPlayed = (shuffledDeck[i].cardVar+" of "+shuffledDeck[i].cardSuit) //calls cardPlayed for message prompts
+let shuffledDeck = "" 
+let currentDeal = ""
 
 //functions
 //submit onStartPrompt
@@ -288,10 +288,10 @@ $(".onStartPrompt").submit(function(event){
     else {
         playerName = "Player"
     };
-    shuffledDeck;
-    //remove after debugging console.log(shuffledDeck); 
+    shuffledDeck = new shuffleDeck();
+  
     event.preventDefault();
-    return dealCards();
+    return currentDeal = new dealCards();
 })
 
 
@@ -312,9 +312,19 @@ function shuffleDeck() {
 };
 
 function dealCards(){
-    console.log('deal cards test')
+    let dealCount = 0;
+    let currentPlayer = 0;
+    let cPlayerScore = 0;
+    let cDealerScore = 0;
+    let cPlayerHand = new cHand();
+    let cDealerHand = new cHand();
+    
 }
 
+function cHand(){
+    
+    console.log('chandTest')
+}
 /*
     while(shuffle.length < 52){
         Card = Math.
