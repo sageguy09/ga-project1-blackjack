@@ -273,12 +273,13 @@ let deck = [
 
 //global vars and arrays
 let playerName = "" 
-let shuffledDeck = ""
+let shuffledDeck = new shuffleDeck()
 //let cardPlayed = (shuffledDeck[i].cardVar+" of "+shuffledDeck[i].cardSuit) //calls cardPlayed for message prompts
 
 
 
 //functions
+//submit onStartPrompt
 $(".onStartPrompt").submit(function(event){
     enteredName = $('input[name="onPlayerName').val()
     if (enteredName != "Enter Player Name"){
@@ -286,15 +287,17 @@ $(".onStartPrompt").submit(function(event){
     }
     else {
         playerName = "Player"
-    }
-    console.log(playerName); //remove after debugging
+    };
+    shuffledDeck;
+    //remove after debugging console.log(shuffledDeck); 
     event.preventDefault();
+    return dealCards();
 })
 
 
 //shuffleDeck() to call deck and set shuffledDeck to array of random cards
 //call deck
-function shuffleDeck(deck) {
+function shuffleDeck() {
     let shuffle = [].concat(deck);
     let currentIndex = deck.length, temporaryValue, randomIndex;
     while (currentIndex !== 0){
@@ -305,11 +308,12 @@ function shuffleDeck(deck) {
         shuffle[currentIndex] = shuffle[randomIndex];
         shuffle[randomIndex] = temporaryValue;
     }
-    shuffledDeck = [].concat(shuffle);
-    return shuffledDeck
-
+    return [].concat(shuffle);
 };
 
+function dealCards(){
+    console.log('deal cards test')
+}
 
 /*
     while(shuffle.length < 52){
