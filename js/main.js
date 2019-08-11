@@ -367,11 +367,13 @@ function dealCards(){
         players[currentPlayer].hand.push(shuffledDeck.pop());
         dealCount += 1;
         console.log("hit btn test: "+shuffledDeck.length+" pull: "+dealCount);
-        
+           
     }
     setCurrentScore(currentPlayer);
 }
-//gets current score from currentPlayer
+    
+
+//gets score for currentPlayer
 function setCurrentScore(cp){
     let cScore = 0;
         for (let i = 0; i < players[cp].hand.length; i++){
@@ -379,42 +381,43 @@ function setCurrentScore(cp){
             cScore += players[cp].hand[i].cardVal;
         }
     players[cp].score = cScore;
-    console.log(players[cp].name+" current score = "+ players[cp].score);
+    console.log("setCurrentScore prompt "+players[cp].name+" current score = "+ players[cp].score);
      chkCurrentScore(cScore);
 }
-
+//check currentPlayer score, provide response
 function  chkCurrentScore(ckScore){
-    //not dealer, under 21
+    
+    //if not dealer, under 21, return ckScore
     if (currentPlayer != 0 && ckScore < 21){
         //**update to send to statusPrompt**
-        console.log(players[currentPlayer].name+" current score "+ckScore+". Hit or Stay?")
+        console.log("chkCscore1: "+players[currentPlayer].name+" current score "+ckScore+". Hit or Stay?")
         
     } 
-    //not dealer, over 21. 
+    //if not dealer, over 21: return bust/set next player or dealer 
     else if (currentPlayer != 0 && ckScore >21){
         //return set playerCount to dealer
-        nxtPlayer = nextPlayer();
+        
         //**update to send to statusPrompt**
-        console.log(players[currentPlayer].name+" BUST! score: "+ckScore+nxtPlayer+" turn to play")
+        console.log("chkCscore2: "+players[currentPlayer].name+" BUST! score: "+ckScore+ "next players turn to play")
+        return nextPlayer(currentPlayer+1);
     }
-    /*
+    
     //dealer (dealer logic?)
-    if (currentPlayer == 0 && ckScore < 17){
+    else if (currentPlayer == 0 && ckScore < 17){
         //message = players.[currenPlayer].name"(dealer)"" = chkCurrentScore
         //**update to send to statusPrompt**
         console.log(players[currentPlayer].name+" current score "+ckScore+". Hit or Stay?")
+    }
         //then call hitButton(submit)
       else if (currentPlayer == 0 && ckScore >21){
           //*do next* update below to refelect dealer...
         //return set playerCount to dealer
-        nxtPlayer = nextPlayer();
+       
         //**update to send to statusPrompt**
-        console.log(players[currentPlayer].name+" BUST! score: "+ckScore+nxtPlayer+" turn to play")
+        console.log(players[currentPlayer].name+" BUST! score: "+ckScore+nxtPlayer)
+        return nextPlayer(currentPlayer)
     }
-*/
-        
-        
-    } 
+
 
 /*
     else if (currentPlayer == players.length && ckScore >21){
@@ -422,23 +425,26 @@ function  chkCurrentScore(ckScore){
     }
   */
     else {
-        nextPlayer();
-        console.log("bust text:"+ckScore)
-    }
+        chkSPmpt5 = "chkCurrentScore Prompt end line "
+        console.log("chkCscore: if else:end line:"+ckScore)
+    };
 }
 
 
     
-function nextPlayer(){
+function nextPlayer(pi){
      
-    if (players.length == currentPlayer){
+    if (pi > players.length){
         currentPlayer += 1;
-        console.log(players[currentPlayer].name);
+       return console.log("nextPlayer set to "+players[currentPlayer].name);
     }
-    else {
+    else if (pi == players.length){
         currentPlayer = 0;
-        return players[0].name;
+        return console.log("dealer set as Player "+players[0].name);
     }
+    else if (pi == 0) {
+        console.log("end game: player1 score= "+players[1].score+"dealer score="+players[0].score );
+    };
 }
     
 
