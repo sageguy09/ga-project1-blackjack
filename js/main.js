@@ -321,7 +321,10 @@ function dealCards(){
     
 }
 
+
 function cHand(){
+    
+    
     
     console.log('chandTest')
 }
