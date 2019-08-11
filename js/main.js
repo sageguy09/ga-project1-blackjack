@@ -276,7 +276,8 @@ let playerName = ""
 
 //stretch idead//let cardPlayed = (shuffledDeck[i].cardVar+" of "+shuffledDeck[i].cardSuit) //calls cardPlayed for message prompts
 let shuffledDeck = new Array; 
-let currentDeal = "";
+let dealCount = 0;
+let currentPlayer =0;
 let players = new Array();
 
     
@@ -292,11 +293,19 @@ $(".onStartPrompt").submit(function(event){
         playerName = "Player"
     };
     shuffledDeck = new shuffleDeck();
-  
+    dealCount = 1;
+    currentPlayer = 1;
     event.preventDefault();
-    return currentDeal = new dealCards();
+    return new dealCards();
 })
 
+$("#hitBtn").click(function(event){
+    dealCards();
+    dealCount += 1
+
+
+
+})
 
 //shuffleDeck() to call deck and set shuffledDeck to array of random cards
 //call deck
@@ -341,14 +350,22 @@ function createHand(pc){
 }
 
 function dealCards(){
-    createHand(2);
-    for (let i = 0; i < 2; i++){
+    if (dealCount == 1){
+        createHand(2);
+        for (let i = 0; i < 2; i++){
             for(var j = 0; j < players.length; j++){
-        let dCard = shuffledDeck.pop();
-        players[j].hand.push(dCard);
+                let dCard = shuffledDeck.pop();
+                players[j].hand.push(dCard);
+                dealCount += 1;
+
+            }
+        }
+    console.log("initial deal: "+shuffledDeck.length+" pull: "+dealCount)
     }
-}
-console.log(shuffledDeck.length)
+    else {
+        
+        console.log("hit btn test: "+shuffledDeck.length+" pull: "+dealCount);
+    }
 }
 
 
