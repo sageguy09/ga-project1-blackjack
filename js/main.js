@@ -280,9 +280,10 @@ let dealCount = 0;
 let currentPlayer =0;
 let players = new Array();
 let roundComplete = 0;
+let roundCount;
+let hitBttn = $("#hitBtn");
+let stayBttn = $("#stayBtn")
 
-
-    
 
 //functions
 //submit onStartPrompt
@@ -301,12 +302,14 @@ $(".onStartPrompt").submit(function(event){
     return dealCards();
 })
 
-$("#hitBtn").click(function(event){
+hitBttn.click(function(event){
     dealCards();
     dealCount += 1
+})
 
-
-
+stayBttn.click(function(event){
+   console.log("players score = "+players[currentPlayer].score)
+    return nextPlayer(currentPlayer+1);
 })
 //**possible beginning for calling newGame function to group functions/variables 
 //shuffleDeck() to call deck and set shuffledDeck to array of random cards
@@ -430,6 +433,7 @@ function  chkCurrentScore(ckScore){
     
     //dealer (dealer logic?)
     else if (currentPlayer == 0 && ckScore < 17){
+        dealerTurn(ckScore);
         //**update to send to statusPrompt**  //message = players.[currentPlayer].name"(dealer)"" = chkCurrentScore
         console.log("chkCscore4: "+cuPlayerName+" current score "+ckScore+". Hit or Stay? update dealer score *add in call dealerHit* return message and await input")
         
@@ -483,11 +487,28 @@ function nextPlayer(pi){
     };*/
 }
 
-function endRound(){
+function dealerTurn(dScore){
+    if (dScore < 17) {
+        console.log("dealerTurn: dealer hits")
+        dealCards();
+        dealCount += 1
+        console.log("dealTurn: hit success")
+    }
+    else endRound();
+}
+
+function disableButtons(hit, stay){}
+
+
+
+function endRound(r){
+    roundCount += r;
     roundComplete += 1;
+    //iterate players, return value
     console.log("End Round result: player score = "+players[1].score+". dealer score ="+players[1].score)
     //for (i = 0; i <= players.length; )
 }
+
 
     
 
