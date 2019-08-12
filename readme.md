@@ -1,5 +1,5 @@
 #Project 1: BLACK JACK
-
+[project-deployment -](https://sageguy09.github.io/ga-project1-blackjack/) 
 
 ## Overview - 
 - Create the game Black Jack using HTML, CSS, and JavaScript. 
