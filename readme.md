@@ -19,6 +19,28 @@
 
 
 
+- Drawing a basic game board concept
+![](https://imgur.com/5DECL33.jpg)
+
+- Identifying project obstacles/tasks to be completed
+![] (https://imgur.com/5YkVJF1)
+
+
+
+- Developing a control flow on paper
+![](https://imgur.com/EPtOFhb)
+
+- converting game board concept to digital wire frame for manipulations/mapping
+![](https://imgur.com/wsyToVu)
+
+- Constructing a digital layout 
+![](https://imgur.com/d0KvPcT)
+
+##Tech Used
+- Program Languages: HTML, CSS, Javascript
+- Git project/issue management: GitKraken
+- Wireframing: draw.io
+
 
 
 
