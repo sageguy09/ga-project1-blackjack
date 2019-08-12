@@ -23,18 +23,18 @@
 ![](https://imgur.com/5DECL33.jpg)
 
 - Identifying project obstacles/tasks to be completed
-![] (https://imgur.com/5YkVJF1)
+![](https://imgur.com/5YkVJF1.jpg)
 
 
 
 - Developing a control flow on paper
-![](https://imgur.com/EPtOFhb)
+![](https://imgur.com/EPtOFhb.jpg)
 
 - converting game board concept to digital wire frame for manipulations/mapping
-![](https://imgur.com/wsyToVu)
+![](https://imgur.com/wsyToVu.jpg)
 
 - Constructing a digital layout 
-![](https://imgur.com/d0KvPcT)
+![](https://imgur.com/d0KvPcT.jpg)
 
 ##Tech Used
 - Program Languages: HTML, CSS, Javascript
