@@ -358,7 +358,6 @@ function dealCards(){
         for (let i = 0; i < 2; i++){
             for(var j = 0; j < players.length; j++){
                 players[j].hand.push(shuffledDeck.pop());
-                addCardImage(players[j].Hand[i]);
                 dealCount += 1;
                 //activate hit/stay/reset buttons
             }
@@ -490,10 +489,10 @@ function winCalc(dealerScore, playerScore){
 /*Start to jQuery*/
 //cCard ==
 //start jquery DOM manipulation code
-function addCardImage(cCard) {
+/*function addCardImage(cCard) {
     let dealHandAr = players[0].hand;
     let playHandAr = players[0].hand;
-    
+
     let newCard = $('<img></img>');
     newCard.attr('class',"handCard")
     if
