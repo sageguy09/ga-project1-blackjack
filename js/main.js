@@ -377,17 +377,27 @@ function dealCards(){
     
 
 //gets score for currentPlayer
-function setCurrentScore(cp){
+function setCurrentScore(cp){ 
+    let evalVal;
     let cScore = 0;
-        for (let i = 0; i < players[cp].hand.length; i++){
-            //insert formula to deterimine if ace exists, set val to 1 if true
-            cScore += players[cp].hand[i].cardVal;
+    let pScore = players[cp].score;
+    let pHand = players[cp].hand;
+        for (let i = 0; i < pHand.length; i++){
+            if (pHand[i].cardVal == 11 && pScore > 10){
+                 evalVal = 1;
+            }
+            else {
+                evalVal = pHand[i].cardVal;
+            }
+            cScore += evalVal;
         }
+        
     players[cp].score = cScore;
+                
     console.log("setCurrentScore prompt "+players[currentPlayer].name+" current score = "+ players[cp].score+" after setting players score, calling chkCurrentScore with cScore");
-     chkCurrentScore(cScore);
+     return chkCurrentScore(cScore);
 }
-//check currentPlayer score, provide response
+//check currentPlayer score, return/call functions
 function  chkCurrentScore(ckScore){
     let cuPlayerName = players[currentPlayer].name;
     
@@ -413,6 +423,7 @@ function  chkCurrentScore(ckScore){
         //**update to send to statusPrompt**
         
          console.log("chkCscore3: "+cuPlayerName+" BlackJack! score: "+ckScore+ "next players turn to play return message and calling nextPlayer(currentPlayer+1)")
+       //message function needs to add cooldown until player swap, next deal.
          return nextPlayer(currentPlayer+1);
     }
     
