@@ -276,13 +276,13 @@ let playerName = ""
 
 //stretch idead//let cardPlayed = (shuffledDeck[i].cardVar+" of "+shuffledDeck[i].cardSuit) //calls cardPlayed for message prompts
 let shuffledDeck = new Array; 
-let dealCount;
+let dealCount = 0;
 let currentPlayer =0;
 let players = new Array();
-let roundComplete = 0;
+let roundComplete;
 let roundCount;
-//let hitBttn = $("#hitBtn");
-//let stayBttn = $("#stayBtn");
+let hitBttn = $("#hitBtn");
+let stayBttn = $("#stayBtn");
 
 
 //functions
@@ -303,19 +303,20 @@ $(".onStartPrompt").submit(function(event){
     return dealCards();
 })
 
-$("#hitBtn").click(function(event){
+hitBttn.click(function(event){
     dealCards();
-    console.log("hitBtn listener")
+    dealCount += 1
 })
 
-$("#stayBtn").click(function(event){
-    fScore = players[currentPlayer].score;
-    roundComplete = 1;
-   console.log("staybtn listener:players score = "+fScore);
-   return dealerTurn();
+stayBttn.click(function(event){
+    cScore = players[currentPlayer].score;
+   console.log("players score = "+cScore)
+   return nextPlayer(currentPlayer+1);
     
 })
+//**possible beginning for calling newGame function to group functions/variables 
 //shuffleDeck() to call deck and set shuffledDeck to array of random cards
+//call deck
 function shuffleDeck() {
     let shuffle = [].concat(deck);
     let currentIndex = deck.length, temporaryValue, randomIndex;
@@ -375,7 +376,8 @@ function dealCards(){
         players[currentPlayer].hand.push(shuffledDeck.pop());
         dealCount += 1;
         console.log("dealCards after hit btn test: remaing cards: "+shuffledDeck.length+" cards pulled: "+dealCount+" calling setCurrentScore");
-    };
+           
+    }
     setCurrentScore(currentPlayer);
 }
     
@@ -385,7 +387,6 @@ function setCurrentScore(cp){
     let evalVal;
     let cScore = 0;
     let pScore = players[cp].score;
-    //aces logic
     let pHand = players[cp].hand;
         for (let i = 0; i < pHand.length; i++){
             if (pHand[i].cardVal == 11 && pScore > 10){
@@ -400,7 +401,11 @@ function setCurrentScore(cp){
     players[cp].score = cScore;
                 
     console.log("setCurrentScore prompt "+players[currentPlayer].name+" current score = "+ players[cp].score+" after setting players score, calling chkCurrentScore with cScore");
-     chkCurrentScore(cScore);
+    if (currentPlayer == 0){
+        return cScore;
+    }
+    else {return chkCurrentScore(cScore)
+    };
 }
 //if currentPlayer(!= dealer), verify  score, return/call functions
 function  chkCurrentScore(ckScore){
@@ -411,42 +416,66 @@ function  chkCurrentScore(ckScore){
     //if not dealer, over 21: return bust/set next player or dealer 
     else if (currentPlayer != 0 && ckScore >21){
          console.log(ckScore+" :send bust, increase to next player, call nextPlayer(currentPlayer)");
-          nextPlayer(currentPlayer);
+         return nextPlayer(currentPlayer+1);
     }
     //if not dealer, over 21: return bust/set next player or dealer 
     else if (currentPlayer != 0 && ckScore == 21){
         console.log(ckScore+": BlackJack, call nextPlayer(currentPlayer)");
-         return nextPlayer(currentPlayer);
+         return nextPlayer(currentPlayer+1);
     }  
-    else return (currentPlayer + " end else "+ ckScore)
-    //else {return nextPlayer(currentPlayer+1)};
-    //loop score back to dealerTurn? else return
+    else if (currentPlayer == 0){
+         return console.log("dealer turn");}
 }
   
 
 function nextPlayer(pi){
      
-     if (pi+1 == players.length){
-        currentPlayer = 0;
-        //call dealerTurn to run through player turns 
-         console.log("nexPlayer: all players turn complete, set to dealer, running dealterTurn;");
-        return dealerTurn();
-    } 
-    
-    else if (pi+1 < players.length){
+    if (pi < players.length){
         currentPlayer += 1;
        return console.log("nextPlayer: player set to "+players[currentPlayer].name+"for (multi)players turn");
     }
-     
+    else if (pi == players.length){
+        currentPlayer = 0;
+        //call dealerTurn to run through player turns 
+         console.log("nexPlayer: all players turn complete, set to dealer, running dealterTurn;");
+         dealerTurn();
+    }
     else { 
         return console.log('exit NextPlayer')
     };
 }
+
+
+
+
+function setDealerScore(cp){ 
+    let evalVal;
+    let cScore = 0;
+    let pScore = players[cp].score;
+    let pHand = players[cp].hand;
+        for (let i = 0; i < pHand.length; i++){
+            if (pHand[i].cardVal == 11 && pScore > 10){
+                 evalVal = 1;
+            }
+            else {
+                evalVal = pHand[i].cardVal;
+            }
+            cScore += evalVal;
+        }
+        
+    players[cp].score = cScore;
+    return cScore;}
+
+
 function dealerTurn(){
-    let dScore = setCurrentScore(0);
+    let dScore = setDealerScore(0);
+    console.log("dealerTurn call Score "+dScore)
     if (dScore < 17) {
-        console.log("dealerTurn: dealer hits")
-        return dealCards();
+        players[0].hand.push(shuffledDeck.pop());
+        dealCount += 1;
+        console.log("dealerTurn: post dealer hits, pre dScore");
+        dScore;
+        return dealerTurn();
     }
     else return endRound(1);
 }
@@ -458,10 +487,26 @@ function disableButtons(hit, stay){}
 function endRound(rc){
     roundCount += rc;
     roundComplete = 1;
-    console.log("End Round: player score = "+players[1].score+". dealer score ="+players[0].score)
- 
+    let dealerScore = players[0].score;
+    let playerScore = players[1].score;
+    winCalc(dealerScore, playerScore)
+    console.log("End Round: player score = "+playerScore+". dealer score ="+dealerScore)
+    /*iterate loop  through players  
     for (i = 0; i < players.length; i++){
         console.log(i, players[i].name, players[i].score)
+    };
+    */
+}
+
+function winCalc(dealerScore, playerScore){
+    if (playerScore > dealerScore){
+        console.log(playerName+" Wins Round")
+    }
+    if (playerScore < dealerScore){
+        console.log(playerName+" Wins Round")
+    }
+    if (playerScore == dealerScore){
+        console.log("Player & Dealer Tie: No Contest")
     }
 }
 
