@@ -25,6 +25,10 @@
 - Identifying project obstacles/tasks to be completed
 ![](https://imgur.com/5YkVJF1.jpg)
 
+- organizing obstacles/taks/bugs to follow project developement process
+
+![](https://imgur.com/2Jtylwz.jpg)
+
 
 
 - Developing a control flow on paper
