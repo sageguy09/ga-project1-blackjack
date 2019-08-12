@@ -332,9 +332,9 @@ function getName(i){
         return playerName;
     }
 };
-//create hand arrays
+//create hand arrays based on player count
 function createHand(pc){
-    //adds hand array
+    //adds hand array for each player
     players = new Array();
     for (let i = 0; i < pc; i++){
         cHand = new Array();
@@ -358,6 +358,7 @@ function dealCards(){
         for (let i = 0; i < 2; i++){
             for(var j = 0; j < players.length; j++){
                 players[j].hand.push(shuffledDeck.pop());
+                addCardImage(players[j].Hand[i]);
                 dealCount += 1;
                 //activate hit/stay/reset buttons
             }
@@ -490,10 +491,14 @@ function winCalc(dealerScore, playerScore){
 //cCard ==
 //start jquery DOM manipulation code
 function addCardImage(cCard) {
+    let dealHandAr = players[0].hand;
+    let playHandAr = players[0].hand;
+    
     let newCard = $('<img></img>');
-    if (player[currentPlayer] = 1){
-        newCard.src()
-    }
+    newCard.attr('class',"handCard")
+    if
 
 }
-    
+/*
+addCardImage(players[j].Hand[i]);
+*/
