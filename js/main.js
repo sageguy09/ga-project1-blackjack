@@ -276,13 +276,13 @@ let playerName = ""
 
 //stretch idead//let cardPlayed = (shuffledDeck[i].cardVar+" of "+shuffledDeck[i].cardSuit) //calls cardPlayed for message prompts
 let shuffledDeck = new Array; 
-let dealCount = 0;
+let dealCount;
 let currentPlayer =0;
 let players = new Array();
-let roundComplete;
+let roundComplete = 0;
 let roundCount;
-let hitBttn = $("#hitBtn");
-let stayBttn = $("#stayBtn");
+//let hitBttn = $("#hitBtn");
+//let stayBttn = $("#stayBtn");
 
 
 //functions
@@ -303,21 +303,19 @@ $(".onStartPrompt").submit(function(event){
     return dealCards();
 })
 
-hitBttn.click(function(event){
+$("#hitBtn").click(function(event){
     dealCards();
-    dealCount += 1
+    console.log("hitBtn listener")
 })
 
-stayBttn.click(function(event){
-    cScore = players[currentPlayer].score;
-   console.log("players score = "+cScore)
-   chkCurrentScore(cScore);
-   return nextPlayer(currentPlayer+1);
+$("#stayBtn").click(function(event){
+    fScore = players[currentPlayer].score;
+    roundComplete = 1;
+   console.log("staybtn listener:players score = "+fScore);
+   return dealerTurn();
     
 })
-//**possible beginning for calling newGame function to group functions/variables 
 //shuffleDeck() to call deck and set shuffledDeck to array of random cards
-//call deck
 function shuffleDeck() {
     let shuffle = [].concat(deck);
     let currentIndex = deck.length, temporaryValue, randomIndex;
@@ -377,8 +375,7 @@ function dealCards(){
         players[currentPlayer].hand.push(shuffledDeck.pop());
         dealCount += 1;
         console.log("dealCards after hit btn test: remaing cards: "+shuffledDeck.length+" cards pulled: "+dealCount+" calling setCurrentScore");
-           
-    }
+    };
     setCurrentScore(currentPlayer);
 }
     
@@ -388,6 +385,7 @@ function setCurrentScore(cp){
     let evalVal;
     let cScore = 0;
     let pScore = players[cp].score;
+    //aces logic
     let pHand = players[cp].hand;
         for (let i = 0; i < pHand.length; i++){
             if (pHand[i].cardVal == 11 && pScore > 10){
@@ -402,7 +400,7 @@ function setCurrentScore(cp){
     players[cp].score = cScore;
                 
     console.log("setCurrentScore prompt "+players[currentPlayer].name+" current score = "+ players[cp].score+" after setting players score, calling chkCurrentScore with cScore");
-    return chkCurrentScore(cScore);
+     chkCurrentScore(cScore);
 }
 //if currentPlayer(!= dealer), verify  score, return/call functions
 function  chkCurrentScore(ckScore){
@@ -413,28 +411,33 @@ function  chkCurrentScore(ckScore){
     //if not dealer, over 21: return bust/set next player or dealer 
     else if (currentPlayer != 0 && ckScore >21){
          console.log(ckScore+" :send bust, increase to next player, call nextPlayer(currentPlayer)");
-         return nextPlayer(currentPlayer+1);
+          nextPlayer(currentPlayer);
     }
     //if not dealer, over 21: return bust/set next player or dealer 
     else if (currentPlayer != 0 && ckScore == 21){
         console.log(ckScore+": BlackJack, call nextPlayer(currentPlayer)");
-         return nextPlayer(currentPlayer+1);
+         return nextPlayer(currentPlayer);
     }  
+    else return (currentPlayer + " end else "+ ckScore)
+    //else {return nextPlayer(currentPlayer+1)};
+    //loop score back to dealerTurn? else return
 }
   
 
 function nextPlayer(pi){
      
-    if (pi < players.length){
-        currentPlayer += 1;
-       return console.log("nextPlayer: player set to "+players[currentPlayer].name+"for (multi)players turn");
-    }
-    else if (pi == players.length){
+     if (pi+1 == players.length){
         currentPlayer = 0;
         //call dealerTurn to run through player turns 
          console.log("nexPlayer: all players turn complete, set to dealer, running dealterTurn;");
         return dealerTurn();
+    } 
+    
+    else if (pi+1 < players.length){
+        currentPlayer += 1;
+       return console.log("nextPlayer: player set to "+players[currentPlayer].name+"for (multi)players turn");
     }
+     
     else { 
         return console.log('exit NextPlayer')
     };
