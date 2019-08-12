@@ -1,0 +1,36 @@
+VM10369 main.js:367 dealCards after createHand() remaining cards: 48 cards pulled: 4 calling setCurrentScore
+VM10369 main.js:387 setCurrentScore prompt Player current score = 20 after setting players score, calling chkCurrentScore with cScore
+VM10369 main.js:397 chkCscore1: Player current score 20. Hit or Stay? return message & await input
+VM10369 main.js:372 dealCards after hit btn test: remaing cards: 47 cards pulled: 5 calling setCurrentScore
+VM10369 main.js:387 setCurrentScore prompt Player current score = 30 after setting players score, calling chkCurrentScore with cScore
+VM10369 main.js:406 chkCscore2: Player BUST! score: 30. next player/dealer turn to play. return message and calling nextPlayer(currentPlayer+1)
+VM10369 main.js:387 setCurrentScore prompt dealer current score = 12 after setting players score, calling chkCurrentScore with cScore
+VM10369 main.js:423 chkCscore4: dealer current score 12. Hit or Stay? update dealer score *add in call dealerHit* return message and await input
+VM10369 main.js:463 nextPlayer: call setCurrentScore(cp), cp=0
+VM10369 main.js:465 nextPlayer: dealer set as Player dealer score: 12 return message, currentPlayer = 0 for dealerTurn
+Navigated to file:///Users/ryansage/sei-course/ga-sei/ga-project1-blackjack/index.html?onPlayerName=Enter+Player+Name
+main.js:367 dealCards after createHand() remaining cards: 0 cards pulled: 4 calling setCurrentScore
+main.js:384 Uncaught TypeError: Cannot read property 'cardVal' of undefined
+    at setCurrentScore (main.js:384)
+    at dealCards (main.js:375)
+    at HTMLButtonElement.<anonymous> (main.js:305)
+    at HTMLButtonElement.dispatch (jquery-3.4.1.min.js:2)
+    at HTMLButtonElement.v.handle (jquery-3.4.1.min.js:2)
+setCurrentScore @ main.js:384
+dealCards @ main.js:375
+(anonymous) @ main.js:305
+dispatch @ jquery-3.4.1.min.js:2
+v.handle @ jquery-3.4.1.min.js:2
+players;
+(2) [{…}, {…}]0: {name: "dealer", hand: Array(2), score: 0, cardsDealt: 0, pNum: 0}1: cardsDealt: 0hand: Array(2)0: undefined1: undefinedlength: 2__proto__: Array(0)name: ""pNum: 1score: 0__proto__: Objectlength: 2__proto__: Array(0)
+dealCount;
+4
+deck.values;
+ƒ values() { [native code] }
+deck[].cardVal;
+VM10825:1 Uncaught SyntaxError: Unexpected token ]
+deck.cardVal;
+undefined
+console.log(deck.map(deck => deck.cardVal));
+VM11176:1 (52) [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11]0: 21: 32: 43: 54: 65: 76: 87: 98: 109: 1010: 1011: 1012: 1113: 214: 315: 416: 517: 618: 719: 820: 921: 1022: 1023: 1024: 1025: 1126: 227: 328: 429: 530: 631: 732: 833: 934: 1035: 1036: 1037: 1038: 1139: 240: 341: 442: 543: 644: 745: 846: 947: 1048: 1049: 1050: 1051: 11length: 52__proto__: Array(0)
+undefined
