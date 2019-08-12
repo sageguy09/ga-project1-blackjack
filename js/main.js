@@ -266,10 +266,6 @@ let deck = [
     carImg: cardImgDir+"ace_of_spades.png"
     },
 ]
- //deck card variables   
-//let number = ['2', '3', '4' ,'5', '6', '7', '8', '9', '10']
-//let face = ['king', 'queen', 'jack', 'ace']
-//let suit = ['diamond', 'heart', 'diamond', 'heart']
 
 //global vars and arrays
 let playerName = "" 
@@ -289,12 +285,12 @@ let stayBttn = $("#stayBtn");
 //submit onStartPrompt
 $(".onStartPrompt").submit(function(event){
     enteredName = $('input[name="onPlayerName').val()
-    if (enteredName != "Enter Player Name"){
-    playerName = enteredName
-    }
-    else {
-        playerName = "Player"
-    };
+        if (enteredName != "Enter Player Name"){
+        playerName = enteredName
+        }
+        else {
+            playerName = "Player"
+        };
     shuffledDeck = new shuffleDeck();
     dealCount = 0;
     currentPlayer = 1;
@@ -302,21 +298,18 @@ $(".onStartPrompt").submit(function(event){
     event.preventDefault();
     return dealCards();
 })
-
+//hitBtn listener to dealCards
 hitBttn.click(function(event){
     dealCards();
     dealCount += 1
 })
-
+//styBtn lister to return score, set next player
 stayBttn.click(function(event){
     cScore = players[currentPlayer].score;
    console.log("players score = "+cScore)
    return nextPlayer(currentPlayer+1);
-    
 })
-//**possible beginning for calling newGame function to group functions/variables 
-//shuffleDeck() to call deck and set shuffledDeck to array of random cards
-//call deck
+//set shuffledDeck to array of random cards
 function shuffleDeck() {
     let shuffle = [].concat(deck);
     let currentIndex = deck.length, temporaryValue, randomIndex;
@@ -339,7 +332,7 @@ function getName(i){
         return playerName;
     }
 };
-
+//create hand arrays
 function createHand(pc){
     //adds hand array
     players = new Array();
@@ -357,7 +350,7 @@ function createHand(pc){
     }
 }
 
-
+// deal initials cards to hand Arrays
 function dealCards(){
     if (dealCount == 0){
         //**stretch: update parameter to be playerCount */
@@ -381,7 +374,6 @@ function dealCards(){
     setCurrentScore(currentPlayer);
 }
     
-
 //gets score for currentPlayer
 function setCurrentScore(cp){ 
     let evalVal;
@@ -398,15 +390,10 @@ function setCurrentScore(cp){
             cScore += evalVal;
         }
         
-    players[cp].score = cScore;
-                
+    players[cp].score = cScore;     
     console.log("setCurrentScore prompt "+players[currentPlayer].name+" current score = "+ players[cp].score+" after setting players score, calling chkCurrentScore with cScore");
-    if (currentPlayer == 0){
-        return cScore;
-    }
-    else {return chkCurrentScore(cScore)
-    };
-}
+   return chkCurrentScore(cScore)
+};
 //if currentPlayer(!= dealer), verify  score, return/call functions
 function  chkCurrentScore(ckScore){
     //if not dealer, under 21, return ckScore (keep playing)
@@ -427,9 +414,8 @@ function  chkCurrentScore(ckScore){
          return console.log("dealer turn");}
 }
   
-
+//assign current player# 
 function nextPlayer(pi){
-     
     if (pi < players.length){
         currentPlayer += 1;
        return console.log("nextPlayer: player set to "+players[currentPlayer].name+"for (multi)players turn");
@@ -444,9 +430,6 @@ function nextPlayer(pi){
         return console.log('exit NextPlayer')
     };
 }
-
-
-
 
 function setDealerScore(cp){ 
     let evalVal;
@@ -479,11 +462,10 @@ function dealerTurn(){
     }
     else return endRound(1);
 }
-
+//*start*disable game buttons
 function disableButtons(hit, stay){}
 
-
-
+//end of round function
 function endRound(rc){
     roundCount += rc;
     roundComplete = 1;
@@ -491,13 +473,8 @@ function endRound(rc){
     let playerScore = players[1].score;
     winCalc(dealerScore, playerScore)
     console.log("End Round: player score = "+playerScore+". dealer score ="+dealerScore)
-    /*iterate loop  through players  
-    for (i = 0; i < players.length; i++){
-        console.log(i, players[i].name, players[i].score)
-    };
-    */
 }
-
+//determine winner, provide response
 function winCalc(dealerScore, playerScore){
     if (playerScore > dealerScore){
         console.log(playerName+" Wins Round")
@@ -509,66 +486,14 @@ function winCalc(dealerScore, playerScore){
         console.log("Player & Dealer Tie: No Contest")
     }
 }
-
-
-
-    
-
-/*
-    while(shuffle.length < 52){
-        Card = Math.
+/*Start to jQuery*/
+//cCard ==
+//start jquery DOM manipulation code
+function addCardImage(cCard) {
+    let newCard = $('<img></img>');
+    if (player[currentPlayer] = 1){
+        newCard.src()
     }
-      //debugger return console.log(shuffle);}
-    let shuffle = [];
-    //variable= #ofObj, 
-   
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex)
-    }
-    
-    
-    */
 
-       //return set playerCount to dealer
-        
-        //**update to send to statusPrompt**
-        
-         //console.log("chkCscore3: "+cuPlayerName+" BlackJack! score: "+ckScore+ "next players turn to play return message and calling nextPlayer(currentPlayer+1)")
-       //message function needs to add cooldown until player swap, next deal.
-         //return nextPlayer(currentPlayer+1);
-
-    
-/*
-//dealer (dealer logic?)
-else if (currentPlayer == 0 && ckScore < 17){
-    return dealerTurn(ckScore);
-    //**update to send to statusPrompt**  //message = players.[currentPlayer].name"(dealer)"" = chkCurrentScore
-    console.log("chkCscore4: "+cuPlayerName+" current score "+ckScore+". Hit or Stay? update dealer score *add in call dealerHit* return message and await input")
-    
 }
-    //then call hitButton(submit)
-else if (currentPlayer == 0 && ckScore >21){
-    //*do next* update below to refelect dealer...
-//return set playerCount to dealer
-
-//**update to send to statusPrompt**
-console.log("chkCscore5: "+cuPlayerName+" BUST! score: "+ckScore+"return message and calling nextPlayer(currentPlayer)")
-return dealerTurn(ckScore);
-}
-
-else if (currentPlayer == 0 && ckScore == 21){
-    //*do next* update below to refelect dealer...
-//return set playerCount to dealer
-
-//**update to send to statusPrompt**
-console.log("chkCscore6: "+cuPlayerName+" dealer hit BlackJack! score: "+ckScore+"return message and calling nextPlayer(currentPlayer)")
-return dealerTurn(ckScore);
-};
-
-
-/*
-else {
-    console.log("chkCscorehit after game end."+ckScore+"bug-disable on last player turn")
     
-};
-*/
