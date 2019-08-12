@@ -279,6 +279,8 @@ let shuffledDeck = new Array;
 let dealCount = 0;
 let currentPlayer =0;
 let players = new Array();
+let roundComplete = 0;
+
 
     
 
@@ -306,7 +308,7 @@ $("#hitBtn").click(function(event){
 
 
 })
-
+//**possible beginning for calling newGame function to group functions/variables 
 //shuffleDeck() to call deck and set shuffledDeck to array of random cards
 //call deck
 function shuffleDeck() {
@@ -358,15 +360,16 @@ function dealCards(){
             for(var j = 0; j < players.length; j++){
                 players[j].hand.push(shuffledDeck.pop());
                 dealCount += 1;
-                
+                //activate hit/stay/reset buttons
             }
         }
-    console.log("createHand deal: "+shuffledDeck.length+" cards pulled: "+dealCount)
+        
+    console.log("dealCards after createHand() remaining cards: "+shuffledDeck.length+" cards pulled: "+dealCount+" calling setCurrentScore")
     }
     else {
         players[currentPlayer].hand.push(shuffledDeck.pop());
         dealCount += 1;
-        console.log("hit btn test: "+shuffledDeck.length+" cards pulled: "+dealCount);
+        console.log("dealCards after hit btn test: remaing cards: "+shuffledDeck.length+" cards pulled: "+dealCount+" calling setCurrentScore");
            
     }
     setCurrentScore(currentPlayer);
@@ -381,16 +384,17 @@ function setCurrentScore(cp){
             cScore += players[cp].hand[i].cardVal;
         }
     players[cp].score = cScore;
-    console.log("setCurrentScore prompt "+players[cp].name+" current score = "+ players[cp].score);
+    console.log("setCurrentScore prompt "+players[currentPlayer].name+" current score = "+ players[cp].score+" after setting players score, calling chkCurrentScore with cScore");
      chkCurrentScore(cScore);
 }
 //check currentPlayer score, provide response
 function  chkCurrentScore(ckScore){
+    let cuPlayerName = players[currentPlayer].name;
     
-    //if not dealer, under 21, return ckScore
+    //if not dealer, under 21, return ckScore (keep playing)
     if (currentPlayer != 0 && ckScore < 21){
         //**update to send to statusPrompt**
-        console.log("chkCscore1: "+players[currentPlayer].name+" current score "+ckScore+". Hit or Stay?")
+        console.log("chkCscore1: "+cuPlayerName+" current score "+ckScore+". Hit or Stay? return message & await input")
         
     } 
     //if not dealer, over 21: return bust/set next player or dealer 
@@ -398,54 +402,82 @@ function  chkCurrentScore(ckScore){
         //return set playerCount to dealer
         
         //**update to send to statusPrompt**
-        console.log("chkCscore2: "+players[currentPlayer].name+" BUST! score: "+ckScore+ "next players turn to play")
+        
+        console.log("chkCscore2: "+cuPlayerName+" BUST! score: "+ckScore+". next player/dealer turn to play. return message and calling nextPlayer(currentPlayer+1)")
         return nextPlayer(currentPlayer+1);
     }
+        //if not dealer, over 21: return bust/set next player or dealer 
+    else if (currentPlayer != 0 && ckScore == 21){
+        //return set playerCount to dealer
+        
+        //**update to send to statusPrompt**
+        
+         console.log("chkCscore3: "+cuPlayerName+" BlackJack! score: "+ckScore+ "next players turn to play return message and calling nextPlayer(currentPlayer+1)")
+         return nextPlayer(currentPlayer+1);
+    }
+    
     
     //dealer (dealer logic?)
     else if (currentPlayer == 0 && ckScore < 17){
-        //message = players.[currenPlayer].name"(dealer)"" = chkCurrentScore
-        //**update to send to statusPrompt**
-        console.log(players[currentPlayer].name+" current score "+ckScore+". Hit or Stay?")
+        //**update to send to statusPrompt**  //message = players.[currentPlayer].name"(dealer)"" = chkCurrentScore
+        console.log("chkCscore4: "+cuPlayerName+" current score "+ckScore+". Hit or Stay? update dealer score *add in call dealerHit* return message and await input")
+        
     }
         //then call hitButton(submit)
-      else if (currentPlayer == 0 && ckScore >21){
-          //*do next* update below to refelect dealer...
-        //return set playerCount to dealer
-       
-        //**update to send to statusPrompt**
-        console.log(players[currentPlayer].name+" BUST! score: "+ckScore+nxtPlayer)
-        return nextPlayer(currentPlayer)
+    else if (currentPlayer == 0 && ckScore >21){
+        //*do next* update below to refelect dealer...
+    //return set playerCount to dealer
+    
+    //**update to send to statusPrompt**
+    console.log("chkCscore5: "+cuPlayerName+" BUST! score: "+ckScore+"return message and calling nextPlayer(currentPlayer)")
+    return endRound(1)
     }
 
-
-/*
-    else if (currentPlayer == players.length && ckScore >21){
-        console.log(players[currentPlayer].name+" BUST! score: "+ckScore+". "+players[0].name+
-    }
-  */
-    else {
-        chkSPmpt5 = "chkCurrentScore Prompt end line "
-        console.log("chkCscore: if else:end line:"+ckScore)
+    else if (currentPlayer == 0 && ckScore == 21){
+        //*do next* update below to refelect dealer...
+    //return set playerCount to dealer
+    
+    //**update to send to statusPrompt**
+    console.log("chkCscore6: "+cuPlayerName+" dealer hit BlackJack! score: "+ckScore+"return message and calling nextPlayer(currentPlayer)")
+    return endRound(1)
     };
+
+
+    /*
+    else {
+        console.log("chkCscorehit after game end."+ckScore+"bug-disable on last player turn")
+        
+    };
+    */
 }
 
 
-    
 function nextPlayer(pi){
      
     if (pi > players.length){
         currentPlayer += 1;
-       return console.log("nextPlayer set to "+players[currentPlayer].name);
+       return console.log("nextPlayer: player set to "+players[currentPlayer].name+"return currentPlayer+=1 for (multi)playerturn");
     }
     else if (pi == players.length){
         currentPlayer = 0;
-        return console.log("dealer set as Player "+players[0].name);
-    }
-    else if (pi == 0) {
-        console.log("end game: player1 score= "+players[1].score+"dealer score="+players[0].score );
+        setCurrentScore(currentPlayer); console.log('nextPlayer: call setCurrentScore(cp), cp=0')
+        //call dealer login to check value 
+        return console.log("nextPlayer: dealer set as Player "+players[0].name+" score: "+players[currentPlayer].score+" return message, currentPlayer = 0 for dealerTurn");
     };
+    /*
+    //possibly remove and call endRound
+    else if (pi == 0) {
+        console.log("nextPlayer: end game: player1 score= "+players[1].score+"dealer score="+players[0].score+"return debug message, call endRound(1)" );
+        return endRound(1);
+    };*/
 }
+
+function endRound(){
+    roundComplete += 1;
+    console.log("End Round result: player score = "+players[1].score+". dealer score ="+players[1].score)
+    //for (i = 0; i <= players.length; )
+}
+
     
 
 /*
