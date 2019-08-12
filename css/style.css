@@ -1,10 +1,15 @@
 
-
+body{ 
+    background-color: black;
+}
 h1 {
     color: black;
     text-align: center;
 }
 .gameBoard {
+    width: 1000px;
+    border: solid 5px white;
+    margin: 0 auto;
     background-color: green;
     padding: 5px;
 }
@@ -32,18 +37,21 @@ h5 {
     justify-content: space-around;  
 }
 
+.handCard{
+    width: 75px;
+    height:150;
 
+}
 
 .handCard {
-    background-color: lightcyan;
-    
+    /*background-color: lightcyan;
+    */
     border: solid black 2px;
     border-radius: 5px;
     width: 160px;
-    
     margin: 5px auto;
 }
-
+*/
 
 #currentScore {
     display: block;
