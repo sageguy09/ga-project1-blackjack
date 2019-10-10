@@ -12,12 +12,10 @@
 ## Game Objective
 - To achieve a score of 21 or less and beat the dealer's hand.
 
-#Project Developement
+## Project Developement
 
 - Researching Blackjack Fundamentals
 ![](https://imgur.com/Tg8l06q.jpg)
-
-
 
 - Drawing a basic game board concept
 ![](https://imgur.com/5DECL33.jpg)
@@ -29,8 +27,6 @@
 
 ![](https://imgur.com/2Jtylwz.jpg)
 
-
-
 - Developing a control flow on paper
 ![](https://imgur.com/EPtOFhb.jpg)
 
@@ -40,20 +36,16 @@
 - Constructing a digital layout 
 ![](https://imgur.com/d0KvPcT.jpg)
 
-##Tech Used
+## Tech Used
 - Program Languages: HTML, CSS, Javascript
 - Git project/issue management: GitKraken
 - Wireframing: draw.io
 
-
-
-
-
-##Src for shuffle/randomize
+## Src for shuffle/randomize
 
 [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Fisher_and_Yates'_original_method)
 
 
-##Src for Images
+## Source for Images
 
 [src for playing cards:](https://code.google.com/archive/p/vector-playing-cards/downloads) --
