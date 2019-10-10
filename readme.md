@@ -1,5 +1,5 @@
 # Project 1: BLACK JACK
-[project-deployment -](https://sageguy09.github.io/ga-project1-blackjack/) 
+[Project Deployment](https://sageguy09.github.io/ga-project1-blackjack/) 
 
 ## Overview - 
 - Create the game Black Jack using HTML, CSS, and JavaScript. 
@@ -37,15 +37,14 @@
 ![](https://imgur.com/d0KvPcT.jpg)
 
 ## Tech Used
-- Program Languages: HTML, CSS, Javascript
-- Git project/issue management: GitKraken
-- Wireframing: draw.io
+- **Program Languages**: HTML, CSS, Javascript
+- **Git project/issue management**: GitKraken
+- **Wireframing**: draw.io
 
-## Src for shuffle/randomize
+## Source for Shuffle/Randomize
 
 [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Fisher_and_Yates'_original_method)
 
-
 ## Source for Images
 
-[src for playing cards:](https://code.google.com/archive/p/vector-playing-cards/downloads) --
+[Source for playing cards:](https://code.google.com/archive/p/vector-playing-cards/downloads) --
