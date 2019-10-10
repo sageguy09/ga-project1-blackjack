@@ -1,4 +1,4 @@
-#Project 1: BLACK JACK
+# Project 1: BLACK JACK
 [project-deployment -](https://sageguy09.github.io/ga-project1-blackjack/) 
 
 ## Overview - 
@@ -12,7 +12,7 @@
 ## Game Objective
 - To achieve a score of 21 or less and beat the dealer's hand.
 
-## Project Developement
+# Project Developement
 
 - Researching Blackjack Fundamentals
 ![](https://imgur.com/Tg8l06q.jpg)
