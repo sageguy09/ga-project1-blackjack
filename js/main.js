@@ -375,9 +375,16 @@ function dealCards(){
 }
 const updateGameboardScore = (currentPlayer) => {
     pscoreVal = players[currentPlayer].score
-    let scoreElem = document.querySelector('.playerScore')
+    if (currentPlayer === 1){
+        elem = '.playerScore'
+    }
+    else{
+        elem = '.dealerScore'
+    }
+    let scoreElem = document.querySelector(elem)
     scoreElem.textContent = pscoreVal
-    //console.log(pScoreVal.innerHTML)
+    
+
 }
 
 //gets score for currentPlayer
@@ -454,20 +461,25 @@ function setDealerScore(cp){
         }
         
     players[cp].score = cScore;
+    updateGameboardScore(0);
     return cScore;}
 
 
 function dealerTurn(){
     let dScore = setDealerScore(0);
+    let gameup = updateGameboardScore(1)
     console.log("dealerTurn call Score "+dScore)
     if (dScore < 17) {
         players[0].hand.push(shuffledDeck.pop());
         dealCount += 1;
         console.log("dealerTurn: post dealer hits, pre dScore");
         dScore;
+        gameup;
         return dealerTurn();
     }
-    else return endRound(1);
+    else {
+        return endRound(1);
+    }
 }
 //*start*disable game buttons
 function disableButtons(hit, stay){}
