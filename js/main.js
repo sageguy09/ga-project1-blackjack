@@ -291,7 +291,7 @@ $(".onStartPrompt").submit(function(event){
         else {
             playerName = "Player"
         };
-    shuffledDeck = new shuffleDeck();
+    shuffledDeck = shuffleDeck();
     dealCount = 0;
     currentPlayer = 1;
     roundComplete = 0;
@@ -363,17 +363,23 @@ function dealCards(){
             }
         }
         
-    console.log("dealCards after createHand() remaining cards: "+shuffledDeck.length+" cards pulled: "+dealCount+" calling setCurrentScore")
+    //console.log("dealCards after createHand() remaining cards: "+shuffledDeck.length+" cards pulled: "+dealCount+" calling setCurrentScore")
     }
     else {
         players[currentPlayer].hand.push(shuffledDeck.pop());
         dealCount += 1;
-        console.log("dealCards after hit btn test: remaing cards: "+shuffledDeck.length+" cards pulled: "+dealCount+" calling setCurrentScore");
+        //console.log("dealCards after hit btn test: remaing cards: "+shuffledDeck.length+" cards pulled: "+dealCount+" calling setCurrentScore");
            
     }
     setCurrentScore(currentPlayer);
 }
-    
+const updateGameboardScore = (currentPlayer) => {
+    pscoreVal = players[currentPlayer].score
+    let scoreElem = document.querySelector('.playerScore')
+    scoreElem.textContent = pscoreVal
+    //console.log(pScoreVal.innerHTML)
+}
+
 //gets score for currentPlayer
 function setCurrentScore(cp){ 
     let evalVal;
@@ -392,7 +398,8 @@ function setCurrentScore(cp){
         
     players[cp].score = cScore;     
     console.log("setCurrentScore prompt "+players[currentPlayer].name+" current score = "+ players[cp].score+" after setting players score, calling chkCurrentScore with cScore");
-   return chkCurrentScore(cScore)
+    updateGameboardScore(cp)
+    return chkCurrentScore(cScore)
 };
 //if currentPlayer(!= dealer), verify  score, return/call functions
 function  chkCurrentScore(ckScore){
