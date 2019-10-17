@@ -385,7 +385,8 @@ function dealCards(){
     else {
         players[currentPlayer].hand.push(shuffledDeck.pop());
         dealCount += 1;
-        appendCardToGameBoard(players[currentPlayer].hand);
+        appendCardToGameBoardTest(currentPlayer, players[currentPlayer].hand.length-1)
+        //appendCardToGameBoard(players[currentPlayer].hand);
         //console.log("dealCards after hit btn test: remaing cards: "+shuffledDeck.length+" cards pulled: "+dealCount+" calling setCurrentScore");
            
     }
@@ -401,11 +402,11 @@ const appendCardToGameBoardTest = (cp, cd) => {
        playerHand.innerHTML += '<img class="card handCard" src="'+cardToAppend+'">'
    }
    else {
-    if (cd == 0){
-        dealerHand.innerHTML += '<img class="card handCard" src="'+cardToAppend+'">'
+    if (cd == 1){
+        dealerHand.innerHTML += '<img class="card handCard" src="css/cardPNG/card_back_orange.png">'
     }
     else {
-        dealerHand.innerHTML += '<img class="card handCard" src="css/cardPNG/card_back_orange.png">'
+        dealerHand.innerHTML += '<img class="card handCard" src="'+cardToAppend+'">'
     }
    }
     // if (dealCount <= 4) {
