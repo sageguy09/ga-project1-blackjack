@@ -279,24 +279,26 @@ let roundComplete;
 let roundCount;
 let hitBttn = $("#hitBtn");
 let stayBttn = $("#stayBtn");
+let resetBttn = document.querySelector('#resetBtn')
 
-
-//functions
-//submit onStartPrompt
-$(".onStartPrompt").submit(function(event){
+const setNewGameValues = () => {
     enteredName = $('input[name="onPlayerName').val()
-        if (enteredName != "Enter Player Name"){
-        playerName = enteredName
-        }
-        else {
-            playerName = "Player"
-        };
-    shuffledDeck = shuffleDeck();
-    dealCount = 0;
-    currentPlayer = 1;
-    roundComplete = 0;
+    if (enteredName != "Enter Player Name"){
+    playerName = enteredName
+    }
+    else {
+        playerName = "Player"
+    };
+shuffledDeck = shuffleDeck();
+dealCount = 0;
+currentPlayer = 1;
+roundComplete = 0;
+return dealCards();
+}
+
+$(".onStartPrompt").submit(startNewGame = (event) => {
     event.preventDefault();
-    return dealCards();
+    return setNewGameValues();
 })
 //hitBtn listener to dealCards
 hitBttn.click(function(event){
@@ -309,6 +311,17 @@ stayBttn.click(function(event){
    console.log("players score = "+cScore)
    return nextPlayer(currentPlayer+1);
 })
+// resetBttn.click(function(event){
+//     console.log("testreset")
+// })
+
+document.addEventListener('click', resetClick = (event) => {
+    if (!event.target.matches('#resetBtn')) return;
+    event.preventDefault();
+    return setNewGameValues();
+
+}, false)
+
 //set shuffledDeck to array of random cards
 function shuffleDeck() {
     let shuffle = [].concat(deck);
@@ -372,6 +385,10 @@ function dealCards(){
            
     }
     setCurrentScore(currentPlayer);
+}
+
+const appendCardToGameBoard = () => {
+    //this function will be used to append cards to the gameboard
 }
 const updateGameboardScore = (currentPlayer) => {
     pscoreVal = players[currentPlayer].score
@@ -495,14 +512,24 @@ function endRound(rc){
 }
 //determine winner, provide response
 function winCalc(dealerScore, playerScore){
-    if (playerScore > dealerScore){
-        console.log(playerName+" Wins Round")
+    if (playerScore <=21 && playerScore > dealerScore){
+       return console.log(playerName+" Wins Round")
     }
-    if (playerScore < dealerScore){
-        console.log(playerName+" Wins Round")
+    if (playerScore <=21 &&  dealerScore > 21){
+        return console.log(playerName+" Wins Round")
     }
+    if (dealerScore > 21 && playerScore <=21 ){
+       return console.log(playerName+" Wins Round")
+    }
+
     if (playerScore == dealerScore){
-        console.log("Player & Dealer Tie: No Contest")
+        return console.log("Player & Dealer Tie: No Contest")
+    }
+    if (playerScore > 21 && dealerScore > 21){
+        return console.log("Player and Dealer Bust: No Contest")
+    }
+    else {
+        return console.log("Dealer Wins")
     }
 }
 /*Start to jQuery*/
