@@ -295,6 +295,8 @@ shuffledDeck = shuffleDeck();
 dealCount = 0;
 currentPlayer = 1;
 roundComplete = 0;
+dealerHand.innerHTML = ""
+playerHand.innerHTML = ""
 return dealCards();
 }
 
