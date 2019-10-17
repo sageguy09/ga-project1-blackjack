@@ -373,10 +373,12 @@ function dealCards(){
             for(var j = 0; j < players.length; j++){
                 players[j].hand.push(shuffledDeck.pop());
                 dealCount += 1;
+                //appendCardToGameBoard(players[j].hand)
                 //activate hit/stay/reset buttons
+                appendCardToGameBoardTest(j, players[j].hand.length-1)
             }
         }
-        
+       // appendCardToGameBoardTest()
     //console.log("dealCards after createHand() remaining cards: "+shuffledDeck.length+" cards pulled: "+dealCount+" calling setCurrentScore")
     }
     else {
@@ -389,11 +391,36 @@ function dealCards(){
     setCurrentScore(currentPlayer);
 }
 
+
+const appendCardToGameBoardTest = (cp, cd) => {
+    appendplayer = players[cp]
+    cardToAppend = appendplayer.hand[cd].carImg
+    console.log(cardToAppend)
+   if (cp == 1){
+       playerHand.innerHTML += '<img class="card handCard" src="'+cardToAppend+'">'
+   }
+    // if (dealCount <= 4) {
+    //     players.forEach(hand => {
+
+    //     })
+    // }
+    // else {
+    //     console.log("current deal count is: "+dealCount)
+    // }
+}
 const appendCardToGameBoard = (cpHand) => {
+    if (cpHand.length <= 2){
+        // cpHand.forEach(carImg => {
+        //     console.log(carImg)
+        // });
+        console.log(cpHand)
+    }
+    else {
     currentCard = cpHand.length-1
     cardImg = cpHand[currentCard].carImg
     //console.log('<img class="card handCard" src="'+cardImg+'">')
    playerHand.innerHTML += '<img class="card handCard" src="'+cardImg+'">'
+    }
 }
 const updateGameboardScore = (currentPlayer) => {
     pscoreVal = players[currentPlayer].score
