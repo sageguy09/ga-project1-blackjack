@@ -281,6 +281,7 @@ let hitBttn = $("#hitBtn");
 let stayBttn = $("#stayBtn");
 let resetBttn = document.querySelector('#resetBtn')
 let playerHand = document.querySelector('.playerHand')
+let dealerHand = document.querySelector('.dealerHand')
 
 const setNewGameValues = () => {
     enteredName = $('input[name="onPlayerName').val()
@@ -396,8 +397,16 @@ const appendCardToGameBoardTest = (cp, cd) => {
     appendplayer = players[cp]
     cardToAppend = appendplayer.hand[cd].carImg
     console.log(cardToAppend)
-   if (cp == 1){
+   if (cp != 0){
        playerHand.innerHTML += '<img class="card handCard" src="'+cardToAppend+'">'
+   }
+   else {
+    if (cd == 0){
+        dealerHand.innerHTML += '<img class="card handCard" src="'+cardToAppend+'">'
+    }
+    else {
+        dealerHand.innerHTML += '<img class="card handCard" src="css/cardPNG/card_back_orange.png">'
+    }
    }
     // if (dealCount <= 4) {
     //     players.forEach(hand => {
