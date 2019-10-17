@@ -280,6 +280,7 @@ let roundCount;
 let hitBttn = $("#hitBtn");
 let stayBttn = $("#stayBtn");
 let resetBttn = document.querySelector('#resetBtn')
+let playerHand = document.querySelector('.playerHand')
 
 const setNewGameValues = () => {
     enteredName = $('input[name="onPlayerName').val()
@@ -381,14 +382,18 @@ function dealCards(){
     else {
         players[currentPlayer].hand.push(shuffledDeck.pop());
         dealCount += 1;
+        appendCardToGameBoard(players[currentPlayer].hand);
         //console.log("dealCards after hit btn test: remaing cards: "+shuffledDeck.length+" cards pulled: "+dealCount+" calling setCurrentScore");
            
     }
     setCurrentScore(currentPlayer);
 }
 
-const appendCardToGameBoard = () => {
-    //this function will be used to append cards to the gameboard
+const appendCardToGameBoard = (cpHand) => {
+    currentCard = cpHand.length-1
+    cardImg = cpHand[currentCard].carImg
+    //console.log('<img class="card handCard" src="'+cardImg+'">')
+   playerHand.innerHTML += '<img class="card handCard" src="'+cardImg+'">'
 }
 const updateGameboardScore = (currentPlayer) => {
     pscoreVal = players[currentPlayer].score
