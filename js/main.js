@@ -282,6 +282,8 @@ let stayBttn = $("#stayBtn");
 let resetBttn = document.querySelector('#resetBtn')
 let playerHand = document.querySelector('.playerHand')
 let dealerHand = document.querySelector('.dealerHand')
+let boardDScore = document.querySelector('.dealerScore')
+let boardPScore = document.querySelector('.playerScore')
 
 const setNewGameValues = () => {
     enteredName = $('input[name="onPlayerName').val()
@@ -297,6 +299,8 @@ currentPlayer = 1;
 roundComplete = 0;
 dealerHand.innerHTML = ""
 playerHand.innerHTML = ""
+boardDScore.textContent= ""
+boardPScore.textContent= ""
 return dealCards();
 }
 
@@ -399,13 +403,12 @@ function dealCards(){
 const appendCardToGameBoardTest = (cp, cd) => {
     appendplayer = players[cp]
     cardToAppend = appendplayer.hand[cd].carImg
-    console.log(cardToAppend)
    if (cp != 0){
        playerHand.innerHTML += '<img class="card handCard" src="'+cardToAppend+'">'
    }
    else {
     if (cd == 1){
-        dealerHand.innerHTML += '<img class="card handCard" src="css/cardPNG/card_back_orange.png">'
+        dealerHand.innerHTML += '<img class="card handCard" id="dealerHidden" src="css/cardPNG/card_back_orange.png">'
     }
     else {
         dealerHand.innerHTML += '<img class="card handCard" src="'+cardToAppend+'">'
@@ -447,6 +450,14 @@ const updateGameboardScore = (currentPlayer) => {
     
 
 }
+const setInitScore = (cp) => {
+    let hand = players[cp].hand
+    let initScore = players[cp].score;
+    hand.forEach(card => {
+        initScore += parseInt(card.cardVal)
+    });
+    return initScore
+}
 
 //gets score for currentPlayer
 function setCurrentScore(cp){ 
@@ -454,20 +465,22 @@ function setCurrentScore(cp){
     let cScore = 0;
     let pScore = players[cp].score;
     let pHand = players[cp].hand;
-        for (let i = 0; i < pHand.length; i++){
-            if (pHand[i].cardVal == 11 && pScore > 10){
-                 evalVal = 1;
-            }
-            else {
-                evalVal = pHand[i].cardVal;
-            }
-            cScore += evalVal;
+    //console.log('sum init val: "'+sumCurrentCardVals(cp))
+    for (let i = 0; i < pHand.length; i++){
+        if (pHand[i].cardVal == 11 && pScore > 10){
+                evalVal = 1;
         }
+        else {
+            evalVal = pHand[i].cardVal;
+            
+        }
+        pScore += evalVal;
+    }
         
-    players[cp].score = cScore;     
+    players[cp].score = pScore;     
     console.log("setCurrentScore prompt "+players[currentPlayer].name+" current score = "+ players[cp].score+" after setting players score, calling chkCurrentScore with cScore");
     updateGameboardScore(cp)
-    return chkCurrentScore(cScore)
+    return chkCurrentScore(pScore)
 };
 //if currentPlayer(!= dealer), verify  score, return/call functions
 function  chkCurrentScore(ckScore){
@@ -525,14 +538,20 @@ function setDealerScore(cp){
     updateGameboardScore(0);
     return cScore;}
 
+const flipDealerCard = () => {
+   hiddenCard = document.getElementById("dealerHidden")
+   hiddenCard.src = players[0].hand[1].carImg
+}
 
 function dealerTurn(){
     let dScore = setDealerScore(0);
     let gameup = updateGameboardScore(1)
+    flipDealerCard();
     console.log("dealerTurn call Score "+dScore)
     if (dScore < 17) {
         players[0].hand.push(shuffledDeck.pop());
         dealCount += 1;
+        appendCardToGameBoardTest(currentPlayer, players[currentPlayer].hand.length-1)
         console.log("dealerTurn: post dealer hits, pre dScore");
         dScore;
         gameup;
