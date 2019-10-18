@@ -284,7 +284,7 @@ let playerHand = document.querySelector('.playerHand')
 let dealerHand = document.querySelector('.dealerHand')
 let boardDScore = document.querySelector('.dealerScore')
 let boardPScore = document.querySelector('.playerScore')
-
+let statusWindow = document.querySelector('.statusPrompt')
 const setNewGameValues = () => {
     enteredName = $('input[name="onPlayerName').val()
     if (enteredName != "Enter Player Name"){
@@ -301,7 +301,8 @@ dealerHand.innerHTML = ""
 playerHand.innerHTML = ""
 boardDScore.textContent= ""
 boardPScore.textContent= ""
-return dealCards();
+
+return dealCards(); 
 }
 
 $(".onStartPrompt").submit(startNewGame = (event) => {
@@ -394,7 +395,6 @@ function dealCards(){
         appendCardToGameBoardTest(currentPlayer, players[currentPlayer].hand.length-1)
         //appendCardToGameBoard(players[currentPlayer].hand);
         //console.log("dealCards after hit btn test: remaing cards: "+shuffledDeck.length+" cards pulled: "+dealCount+" calling setCurrentScore");
-           
     }
     setCurrentScore(currentPlayer);
 }
@@ -437,6 +437,13 @@ const appendCardToGameBoard = (cpHand) => {
    playerHand.innerHTML += '<img class="card handCard" src="'+cardImg+'">'
     }
 }
+
+const updateGameStatus = (message) => {
+
+        statusWindow.innerHTML = '<p>'+message+'</p>'
+
+    
+}
 const updateGameboardScore = (currentPlayer) => {
     pscoreVal = players[currentPlayer].score
     if (currentPlayer === 1){
@@ -474,32 +481,34 @@ function setCurrentScore(cp){
             evalVal = pHand[i].cardVal;
             
         }
-        pScore += evalVal;
+        cScore += evalVal;
+        console.log("logging of pScore after for loop: "+pScore)
     }
         
-    players[cp].score = pScore;     
-    console.log("setCurrentScore prompt "+players[currentPlayer].name+" current score = "+ players[cp].score+" after setting players score, calling chkCurrentScore with cScore");
+    players[cp].score = cScore;     
+    //console.log("setCurrentScore prompt "+players[currentPlayer].name+" current score = "+ players[cp].score+" after setting players score, calling chkCurrentScore with cScore");
     updateGameboardScore(cp)
-    return chkCurrentScore(pScore)
+    return chkCurrentScore(cScore)
 };
 //if currentPlayer(!= dealer), verify  score, return/call functions
 function  chkCurrentScore(ckScore){
     //if not dealer, under 21, return ckScore (keep playing)
     if (currentPlayer != 0 && ckScore < 21){
-        return console.log(ckScore+" :await Hit/Stay");
+        //return console.log();
+        return updateGameStatus(ckScore+" :await Hit/Stay")
     } 
     //if not dealer, over 21: return bust/set next player or dealer 
     else if (currentPlayer != 0 && ckScore >21){
-         console.log(ckScore+" :send bust, increase to next player, call nextPlayer(currentPlayer)");
+         updateGameStatus(ckScore+" :send bust, increase to next player, call nextPlayer(currentPlayer)");
          return nextPlayer(currentPlayer+1);
     }
     //if not dealer, over 21: return bust/set next player or dealer 
     else if (currentPlayer != 0 && ckScore == 21){
-        console.log(ckScore+": BlackJack, call nextPlayer(currentPlayer)");
+        updateGameStatus(ckScore+": BlackJack, call nextPlayer(currentPlayer)");
          return nextPlayer(currentPlayer+1);
     }  
     else if (currentPlayer == 0){
-         return console.log("dealer turn");}
+         return  updateGameStatus("dealer turn");}
 }
   
 //assign current player# 
