@@ -313,7 +313,7 @@ hitBttn.click(function(event){
     dealCards();
     dealCount += 1
 })
-//styBtn lister to return score, set next player
+//styBtn lister to return score, set next player8999
 stayBttn.click(function(event){
     cScore = players[currentPlayer].score;
    console.log("players score = "+cScore)

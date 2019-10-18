@@ -101,3 +101,9 @@ align-self: center;
     flex-direction: column;
     justify-content: space-around;
 }
+
+.playerHand, .dealerHand {
+    border: solid;
+    height: 250px;
+    padding: 5px;
+}
