@@ -439,11 +439,21 @@ const appendCardToGameBoard = (cpHand) => {
 }
 
 const updateGameStatus = (message) => {
-
-        statusWindow.innerHTML = '<p>'+message+'</p>'
-
+    if (currentPlayer == 1 && roundComplete == 0){
+        return statusWindow.innerHTML = '<p>'+message+'</p>'
+    }
+    if (currentPlayer == 0 && roundComplete == 0) {
+        return statusWindow.innerHTML = '<p>'+message+'</p>'
+    }
+    else {
+        return statusWindow.innerHTML = '<p>'+message+'</p>'
+    }
     
 }
+const setFinalStatus = (message) => {
+    return statusWindow.innerHTML += '<p>'+message+'</p>'    
+}
+
 const updateGameboardScore = (currentPlayer) => {
     pscoreVal = players[currentPlayer].score
     if (currentPlayer === 1){
@@ -495,16 +505,16 @@ function  chkCurrentScore(ckScore){
     //if not dealer, under 21, return ckScore (keep playing)
     if (currentPlayer != 0 && ckScore < 21){
         //return console.log();
-        return updateGameStatus(ckScore+" :await Hit/Stay")
+        return updateGameStatus(players[1].name+"'s score = "+ckScore+". Hit or Stay?")
     } 
     //if not dealer, over 21: return bust/set next player or dealer 
     else if (currentPlayer != 0 && ckScore >21){
-         updateGameStatus(ckScore+" :send bust, increase to next player, call nextPlayer(currentPlayer)");
+         updateGameStatus(players[1].name+"'s score = "+ckScore+" Player Bust. Dealer's Turn");
          return nextPlayer(currentPlayer+1);
     }
     //if not dealer, over 21: return bust/set next player or dealer 
     else if (currentPlayer != 0 && ckScore == 21){
-        updateGameStatus(ckScore+": BlackJack, call nextPlayer(currentPlayer)");
+        updateGameStatus(players[1].name+"'s score = "+ckScore+": Black Jack, Dealer Turn!");
          return nextPlayer(currentPlayer+1);
     }  
     else if (currentPlayer == 0){
@@ -579,29 +589,29 @@ function endRound(rc){
     roundComplete = 1;
     let dealerScore = players[0].score;
     let playerScore = players[1].score;
+    updateGameStatus("End Round:"+players[1].name+"'s score = "+playerScore+". Dealer's score ="+dealerScore)
     winCalc(dealerScore, playerScore)
-    console.log("End Round: player score = "+playerScore+". dealer score ="+dealerScore)
 }
 //determine winner, provide response
 function winCalc(dealerScore, playerScore){
     if (playerScore <=21 && playerScore > dealerScore){
-       return console.log(playerName+" Wins Round")
+       return setFinalStatus(players[1].name+" Wins Round")
     }
     if (playerScore <=21 &&  dealerScore > 21){
-        return console.log(playerName+" Wins Round")
+        return setFinalStatus('Dealer Bust! '+players[1].name+" Wins Round")
     }
     if (dealerScore > 21 && playerScore <=21 ){
-       return console.log(playerName+" Wins Round")
+       return setFinalStatus(players[1].name+" Wins Round")
     }
 
     if (playerScore == dealerScore){
-        return console.log("Player & Dealer Tie: No Contest")
+        return setFinalStatus(players[1].name+" & Dealer Tie: No Contest")
     }
     if (playerScore > 21 && dealerScore > 21){
-        return console.log("Player and Dealer Bust: No Contest")
+        return setFinalStatus(players[1].name+" and Dealer Bust: No Contest")
     }
     else {
-        return console.log("Dealer Wins")
+        return setFinalStatus("Dealer Wins")
     }
 }
 /*Start to jQuery*/
