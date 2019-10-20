@@ -279,12 +279,16 @@ let roundComplete;
 let roundCount;
 let hitBttn = $("#hitBtn");
 let stayBttn = $("#stayBtn");
+let hitButton = document.querySelector('#hitBtn')
+let stayButton = document.querySelector('#stayBtn')
 let resetBttn = document.querySelector('#resetBtn')
 let playerHand = document.querySelector('.playerHand')
 let dealerHand = document.querySelector('.dealerHand')
 let boardDScore = document.querySelector('.dealerScore')
 let boardPScore = document.querySelector('.playerScore')
 let statusWindow = document.querySelector('.statusPrompt')
+let startbutton = document.querySelector('.startgame')
+let gamebtns = document.querySelectorAll('.btns')
 const setNewGameValues = () => {
     enteredName = $('input[name="onPlayerName').val()
     if (enteredName != "Enter Player Name"){
@@ -307,6 +311,10 @@ return dealCards();
 
 $(".onStartPrompt").submit(startNewGame = (event) => {
     event.preventDefault();
+    startbutton.toggleAttribute("disabled", true)
+    hitButton.removeAttribute("disabled")
+    resetBttn.removeAttribute("disabled")
+    stayButton.removeAttribute("disabled")
     return setNewGameValues();
 })
 //hitBtn listener to dealCards
@@ -326,6 +334,9 @@ stayBttn.click(function(event){
 
 document.addEventListener('click', resetClick = (event) => {
     if (!event.target.matches('#resetBtn')) return;
+    hitButton.removeAttribute("disabled")
+    resetBttn.removeAttribute("disabled")
+    stayButton.removeAttribute("disabled")
     event.preventDefault();
     return setNewGameValues();
 
@@ -589,6 +600,8 @@ function endRound(rc){
     roundComplete = 1;
     let dealerScore = players[0].score;
     let playerScore = players[1].score;
+    stayButton.toggleAttribute("disabled", true)
+    hitButton.toggleAttribute("disabled", true)
     updateGameStatus("End Round:"+players[1].name+"'s score = "+playerScore+". Dealer's score ="+dealerScore)
     winCalc(dealerScore, playerScore)
 }
